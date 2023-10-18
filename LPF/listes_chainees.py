@@ -20,7 +20,7 @@ def longueurR(chaine: Chainon) -> int :
     else :
         return 1 + longueurR(chaine.suivant)
 
-def longueur(chaine) :
+def longueurI(chaine) :
     n = 0
     chainon = chaine
     while chainon is not None :
@@ -30,22 +30,95 @@ def longueur(chaine) :
 
 def n_ieme_elementR(chaine : Chainon , n : int):
     """renvoie la valeur du n-ième élément de la liste chaine passée en argument"""
-    a = 0
-    if n == 1 :
+    if chaine is None:
+        raise IndexError ('non trop grand')
+    if n == 0 :
         return chaine.valeur
     else :
-        for i in range(n):
-            a = n_ieme_elementR(chaine.suivant,n-1)
-        return a
-    
-def n_ieme_element(chaine : Chainon , n : int):
-    a = 0
+        return n_ieme_elementR(chaine.suivant,n-1)
+
+def n_ieme_elementI(chaine, n) :
+    if n < 0 :
+        raise IndexError("Invalid index")
+    ni = 0
     chainon = chaine
-    for i in range(chaine.suivant.valeur):
-        a += chainon.valeur 
-    return a
+    while  chainon != None and ni != n :
+        ni += 1
+        chainon = chainon.suivant
+    if chainon != None :
+        return chainon.valeur
+    else :
+        raise IndexError("Invalid index")
+
+def concatenerR(c1 : Chainon, c2 : Chainon):
+    if c1 is None :
+        return c2
+    else:
+        return Chainon(c1.valeur , concatenerR(c1.suivant, c2))
+    
+def concatenerI(c1, c2) :
+    chainon = c1
+    while chainon.suivant != None :
+        chainon = chainon.suivant
+    chainon.suivant = c2
+    return c1    
+    
+    
+def inserer(v: int, n: int, chaine: Chainon):
+    if n < 0:
+        raise IndexError("n doit être positif")
+    if n == 0 or chaine is None :
+        return Chainon(v,chaine)    
+    else: 
+        return Chainon(chaine.valeur, inserer(v, n-1, chaine.suivant))
+
+def supprime(n: int, chaine: Chainon):
+    if n < 0:
+        raise IndexError("n doit être positif")
+    if n == 0:
+        return chaine.suivant
+    elif chaine.suivant is None :
+        raise IndexError('indice hors de porté')
+    else: 
+        return Chainon(chaine.valeur, supprime(n-1, chaine.suivant))
 
 
-chaine = Chainon(21, Chainon(15, Chainon( 45, None)))
-print(chaine)
+def creer_depuis_tab(tab:list):
+    lc = None
+    for i in range(len(tab)):
+        lc = inserer(tab[i], i, lc)
+    return lc
+
+def occurrences(valeur, chaine):
+    if chaine is None :
+        return 0
+    else:
+        if chaine.valeur == valeur :
+            return 1 + occurrences(valeur, chaine.suivant)
+        else:
+            return occurrences(valeur, chaine.suivant)
+
+def identique(c1 : Chainon, c2 : Chainon) -> bool:
+    if c1 is None and c2 is None:
+        return True
+    elif c1 is None or c2 is None or c1.valeur != c2.valeur :
+        return False
+    else:
+        return identique(c1.suivant, c2.suivant)
+
+def identiqueI(c1, c2):
+    chainon1 = c1
+    chainon2 = c2
+    while chainon1 != None and chainon2 != None:
+        if chainon1.valeur != chainon2.valeur :
+            return False
+        chainon1 = chainon1.suivant
+        chainon2 = chainon2.suivant
+    return chainon1 == chainon2
+    
+    
+if __name__ == "__main__":    
+    c1 = Chainon(45, Chainon(12, Chainon( 21,Chainon(45,Chainon(45, None)))))
+    c2 = Chainon(17, Chainon(42, None))
+
 

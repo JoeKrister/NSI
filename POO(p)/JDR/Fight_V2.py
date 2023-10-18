@@ -77,17 +77,20 @@ def combat(P1, P2):
                 sleep(1)
             else :
                 P2, P1 = attaque_et_defense(P2, P1)
+                sleep(1)
                 if P1.pv <=0 :
                     print (f"Le vainqueur est {P2.nom}, il lui reste {P2.pv} points de vie. Il gagne {P2.combat_pex} points d'expériences.")
                     sleep(1)
                     
         elif initP2 > initP1:
             P2, P1 = attaque_et_defense(P2, P1)
+            sleep(1)
             if P1.pv <=0 :
                 print (f"Le vainqueur est {P2.nom}, il lui reste {P2.pv} points de vie. Il gagne {P2.combat_pex} points d'expériences.")
                 sleep(1)
             else :
                 P1, P2 = attaque_et_defense(P1, P2)
+                sleep(1)
                 if P2.pv <=0 :
                     print (f"Le vainqueur est {P1.nom}, il lui reste {P1.pv} points de vie. Il gagne {P1.combat_pex} points d'expériences.")
                     sleep(1)

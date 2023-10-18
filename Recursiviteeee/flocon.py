@@ -75,6 +75,22 @@ def triforce(c,n):
         raph.left(120)
         raph.pendown()
         
+def drapeau(n):
+    if n == 0:
+        raph.forward(150)
+        raph.right(90)
+        raph.forward(50)
+        raph.right(90)
+        raph.forward(150)
+        raph.right(90)
+        raph.forward(50)
+    else:
+        drapeau(0)
+        raph.forward(15)
+        drapeau(n)
+            
+        
+        
             
 if __name__ == "__main__" :
     couleurs=["black","white","grey","red","orange","green",
@@ -85,6 +101,6 @@ if __name__ == "__main__" :
     raph = turtle.Turtle()
     raph.speed(0)
     
-    floconVK(300,3)
+    drapeau(2)
     
     turtle.exitonclick()
