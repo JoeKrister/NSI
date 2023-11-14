@@ -33,6 +33,14 @@ class PileC :
     
     def __str__(self) :
         return str(self.p)
+    
+    
+    def vider(self):
+        if self.est_vide():
+            raise IndexError(" already empty")
+        else:
+            while self.est_vide() is False:
+                self.depiler()
 
 ################
 
