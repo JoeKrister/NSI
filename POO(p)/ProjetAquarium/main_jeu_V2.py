@@ -193,7 +193,8 @@ class Aqua_box:
                         self.total_poisson +=1
             self.level.level_up()
             self.level.gain_exp(self.liste_poisson)
-            
+        else:
+            Requin().self.deplacement()
             
 
 
