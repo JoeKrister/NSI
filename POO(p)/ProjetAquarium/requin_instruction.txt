@@ -1,0 +1,6 @@
+création class requin sous celle poisson
+dedans doit definir déplacment animal + forme 
+
+dans aqua box
+ dans la partie update
+dire que si nv max, classe requin apparait et plus possibilité acheter poisson

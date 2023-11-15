@@ -11,6 +11,13 @@ class ListeC:
     
     def push(self, v):
         self.head = Chainon(v, self.head)
+        
+    def pop(self) :
+        if self.is_empty():
+            raise IndexError("Pop from an empty list")
+        value = self.head.valeur
+        self.head = self.head.suivant
+        return value
 
     def __str__(self):
         return str(self.head)
