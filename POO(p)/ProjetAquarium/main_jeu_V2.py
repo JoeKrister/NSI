@@ -75,27 +75,33 @@ class Requin:
     
     def deplacement(self, direc):
         if direc == 'up' and self.y > 3 :
-            self.y -= 1
+            self.y -= 2
             self.direc = 'up'
         elif direc == 'down' and self.y < 120:
-            self.y += 1
+            self.y += 2
             self.direc = 'down'
         elif direc == 'left' and self.x > 4:
-            self.x -= 1
+            self.x -= 2
             self.direc = 'left'
         elif direc == 'right' and self.x < 164:
-            self.x += 1
+            self.x += 2
             self.direc = 'right'
         
     def affichage(self):
         if self.direc == 'up' :
             pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
         elif self.direc == 'down' :
-            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
+            pyxel.blt(self.x, self.y, 0, 48, 128, 32, 45, 0)
         elif self.direc == 'left' :
-            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
+            if round(time.time())%2 == 1:
+                pyxel.blt(self.x, self.y, 0, 8, 196, 47, 22, 0)
+            else:
+                pyxel.blt(self.x, self.y, 1, 8, 196, 47, 22, 0)
         elif self.direc == 'right':
-            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
+            if round(time.time())%2 == 1:
+                pyxel.blt(self.x, self.y, 0, 8, 228, 47, 22, 0)
+            else:
+                pyxel.blt(self.x, self.y, 1, 8, 228, 47, 22, 0)
         
 
 
@@ -161,6 +167,7 @@ class Aqua_box:
         self.liste_poisson = []
         self.total_poisson = 0
         self.requin = Requin()
+        self.duree = 0
         pyxel.mouse(True)
         pyxel.playm(0, 1, True)
         pyxel.run(self.update, self.draw)
@@ -208,8 +215,14 @@ class Aqua_box:
         else:
             if pyxel.btn(pyxel.KEY_RIGHT):
                 self.requin.deplacement('right')
+                for e in self.liste_poisson:
+                    if self.requin.x + 40 < e.x < self.requin.x + 60 and self.requin.y < e.y < self.requin.y + 20:
+                        self.liste_poisson.remove(e)
             elif pyxel.btn(pyxel.KEY_LEFT):
                 self.requin.deplacement('left')
+                for e in self.liste_poisson:
+                    if self.requin.x < e.x < self.requin.x + 20 and self.requin.y + 3 < e.y < self.requin.y + 23:
+                        self.liste_poisson.remove(e)
             elif pyxel.btn(pyxel.KEY_UP):
                 self.requin.deplacement('up')
                 for e in self.liste_poisson:
@@ -217,57 +230,68 @@ class Aqua_box:
                         self.liste_poisson.remove(e)
             elif pyxel.btn(pyxel.KEY_DOWN):
                 self.requin.deplacement('down')
+                for e in self.liste_poisson:
+                    if self.requin.x < e.x < self.requin.x + 20 and self.requin.y + 24 < e.y < self.requin.y + 39:
+                        self.liste_poisson.remove(e)
             
 
 
     def draw(self):
-            pyxel.cls(0)
-            pyxel.bltm(0, 0, 0, 0, 0, 256, 160, 0)
-            if len(self.liste_poisson) != 0:
-                for e in self.liste_poisson:
-                    e.deplacement()
-                for e in self.liste_poisson:
-                    if e.vie <= 0:
-                        return self.liste_poisson.remove(e)
-                    else:
-                        e.vie -= 0.1
-            else:
-                pyxel.text(8, 40, f'Pour acheter des poissons', 7)
-                pyxel.text(8, 48, f'Clic droit sur le poisson dans la boutique', 7)
-                pyxel.text(8, 56, f"Attention, vos poissons prennent de l'age", 7)
-                if self.argent.argent < 100:
-                    pyxel.text(8, 80, f"Pour gagner de l'argent", 7)
-                    pyxel.text(8, 88, f"clic gauche sur l'ecran", 7)
-            pyxel.text(5, 149.5, f'Nombre de poissons : {len(self.liste_poisson)} / Votre argent : {round(self.argent.argent)}', 7)
-            pyxel.text(203, 3, f'P. rouge', 7)
-            pyxel.text(222, 18, f'100', 7)
-            pyxel.text(203, 35, f'P. combatant', 7)
-            pyxel.text(222, 50, f'200', 7)
-            pyxel.text(203, 67, f'P. chat', 7)
-            pyxel.text(222, 82, f'300', 7)
-            pyxel.text(203, 99, f'Carpe Koi', 7)
-            pyxel.text(222, 114, f'500', 7)
-            pyxel.text(203, 131, f'Discus', 7)
-            pyxel.text(222, 146, f'999', 7)
-            self.level.affichage()
-            if pyxel.btn(pyxel.KEY_S):
-                pyxel.text(5, 6, f'Argent total : {round(self.argent.argent_tt)}', 7)
-                pyxel.text(5, 14, f'Poissons total : {self.total_poisson}', 7)
-                pyxel.text(5, 22, f'Gain par clic: {round(self.argent.multi)}', 7)
-                pyxel.text(5, 30, f'Duree : {round(time.time() - TEMPS_DEBUT)}', 7)
-                pyxel.text(5, 38, f'EXP : {self.level.exp}', 7)
-            else:
-                pyxel.text(5, 6, f'S pour stats', 7)
             if self.level.level == 4:
+                pyxel.cls(0)
+                pyxel.bltm(0, 0, 1, 0, 0, 256, 160, 0)
                 self.requin.affichage()
+                for e in self.liste_poisson:
+                        e.deplacement()
                 if len(self.liste_poisson) == 0:
+                    if self.duree == 0:
+                        self.duree = round(time.time() - TEMPS_DEBUT)
                     pyxel.cls(0)
                     pyxel.text(8, 30, f'BRAVO !', 7)
                     pyxel.text(8, 50, f'Argent total : {round(self.argent.argent_tt)}', 7)
                     pyxel.text(8, 58, f'Poissons total : {self.total_poisson}', 7)
                     pyxel.text(8, 66, f'Gain par clic: {round(self.argent.multi)}', 7)
-                    pyxel.text(8, 74, f'Duree : {round(time.time() - TEMPS_DEBUT)}', 7)
+                    pyxel.text(8, 74, f'Duree : {self.duree}', 7)
                     pyxel.text(8, 82, f'EXP : {self.level.exp}', 7)
+            else:
+                pyxel.cls(0)
+                pyxel.bltm(0, 0, 0, 0, 0, 256, 160, 0)
+                if len(self.liste_poisson) != 0:
+                    for e in self.liste_poisson:
+                        e.deplacement()
+                    for e in self.liste_poisson:
+                        if e.vie <= 0:
+                            return self.liste_poisson.remove(e)
+                        else:
+                            e.vie -= 0.1
+                else:
+                    pyxel.text(8, 40, f'Pour acheter des poissons', 7)
+                    pyxel.text(8, 48, f'Clic droit sur le poisson dans la boutique', 7)
+                    pyxel.text(8, 56, f"Attention, vos poissons prennent de l'age", 7)
+                    if self.argent.argent < 100:
+                        pyxel.text(8, 80, f"Pour gagner de l'argent", 7)
+                        pyxel.text(8, 88, f"clic gauche sur l'ecran", 7)
+                pyxel.text(203, 3, f'P. rouge', 7)
+                pyxel.text(222, 18, f'100', 7)
+                pyxel.text(203, 35, f'P. combatant', 7)
+                pyxel.text(222, 50, f'200', 7)
+                pyxel.text(203, 67, f'P. chat', 7)
+                pyxel.text(222, 82, f'300', 7)
+                pyxel.text(203, 99, f'Carpe Koi', 7)
+                pyxel.text(222, 114, f'500', 7)
+                pyxel.text(203, 131, f'Discus', 7)
+                pyxel.text(222, 146, f'999', 7)
+                if pyxel.btn(pyxel.KEY_S):
+                    pyxel.text(5, 6, f'Argent total : {round(self.argent.argent_tt)}', 7)
+                    pyxel.text(5, 14, f'Poissons total : {self.total_poisson}', 7)
+                    pyxel.text(5, 22, f'Gain par clic: {round(self.argent.multi)}', 7)
+                    pyxel.text(5, 30, f'Duree : {round(time.time() - TEMPS_DEBUT)}', 7)
+                    pyxel.text(5, 38, f'EXP : {self.level.exp}', 7)
+                else:
+                    pyxel.text(5, 6, f'S pour stats', 7)
+            self.level.affichage()
+            pyxel.text(5, 149.5, f'Nombre de poissons : {len(self.liste_poisson)} / Votre argent : {round(self.argent.argent)}', 7)
+
                     
                     
 if __name__ == '__main__':
