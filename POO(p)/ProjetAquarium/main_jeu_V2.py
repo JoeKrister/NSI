@@ -66,25 +66,38 @@ class Poisson:
         else:
             return 1
 
+
 class Requin:
     def __init__(self):
-        self.x = random.randint(5,188)
-        self.y = random.randint(5,130)
+        self.x = 15
+        self.y = 15
+        self.direc = 'down'
     
-    def deplacement(self):
-        if pyxel.btnp(pyxel.KEY_UP):
-            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
-            self.x += 10
-        if pyxel.btnp(pyxel.KEY_DOWN):
-            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
-            self.x -= 10
-        if pyxel.btnp(pyxel.KEY_LEFT):
-            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
-            self.y += 10
-        if pyxel.btnp(pyxel.KEY_RIGHT):
-            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
-            self.y -= 10  
+    def deplacement(self, direc):
+        if direc == 'up' and self.y > 3 :
+            self.y -= 1
+            self.direc = 'up'
+        elif direc == 'down' and self.y < 120:
+            self.y += 1
+            self.direc = 'down'
+        elif direc == 'left' and self.x > 4:
+            self.x -= 1
+            self.direc = 'left'
+        elif direc == 'right' and self.x < 164:
+            self.x += 1
+            self.direc = 'right'
         
+    def affichage(self):
+        if self.direc == 'up' :
+            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
+        elif self.direc == 'down' :
+            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
+        elif self.direc == 'left' :
+            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
+        elif self.direc == 'right':
+            pyxel.blt(self.x, self.y, 0, 8, 128, 32, 45, 0)
+        
+
 
 class Level:
     def __init__(self):
@@ -96,13 +109,13 @@ class Level:
     def level_up(self):
         if self.exp >= 0:
             self.level = 0
-        if self.exp >= 500:
+        if self.exp >= 100:
             self.level = 1
-        if self.exp >= 1000:
+        if self.exp >= 200:
             self.level = 2
-        if self.exp >= 1800:
+        if self.exp >= 300:
             self.level = 3
-        if self.exp >= 3000:
+        if self.exp >= 501:
             self.level = 4
 
 
@@ -110,9 +123,7 @@ class Level:
         if len(liste_poisson) >= self.gain_poisson:
             self.exp += 100
             self.gain_poisson += 5
-        elif len(liste_poisson) < self.gain_poisson - 5:
-            self.exp -= 100
-            self.gain_poisson -= 5
+
 
     def affichage(self):
         if self.level == 1 or self.level == 2 or self.level == 3 or self.level == 4:
@@ -149,6 +160,7 @@ class Aqua_box:
         self.level = Level()
         self.liste_poisson = []
         self.total_poisson = 0
+        self.requin = Requin()
         pyxel.mouse(True)
         pyxel.playm(0, 1, True)
         pyxel.run(self.update, self.draw)
@@ -156,7 +168,7 @@ class Aqua_box:
             
 
     def update(self):
-        if self.level == 0 or 1 or 2 or 3 :
+        if self.level.level < 4 :
             if pyxel.btn(pyxel.KEY_A):
                 quit()
             if pyxel.btnr(pyxel.MOUSE_BUTTON_LEFT):
@@ -172,34 +184,43 @@ class Aqua_box:
                         self.liste_poisson.append(Poisson(0, 100, 250, 0.4))
                         self.total_poisson +=1
                 if is_mouse_over_button(200, 33, 100, 30):
-                    if self.argent.argent >= 100:
-                        self.argent.argent -= 100
+                    if self.argent.argent >= 200:
+                        self.argent.argent -= 200
                         self.liste_poisson.append(Poisson(1, 200, 380, 0.6))
                         self.total_poisson +=1
                 if is_mouse_over_button(200, 65, 100, 30):
-                    if self.argent.argent >= 100:
-                        self.argent.argent -= 100
+                    if self.argent.argent >= 300:
+                        self.argent.argent -= 300
                         self.liste_poisson.append(Poisson(2, 300, 450, 0.8))
                         self.total_poisson +=1
                 if is_mouse_over_button(200, 97, 100, 30):
-                    if self.argent.argent >= 100:
-                        self.argent.argent -= 100
+                    if self.argent.argent >= 500:
+                        self.argent.argent -= 500
                         self.liste_poisson.append(Poisson(3, 500, 800, 0.9))
                         self.total_poisson +=1
                 if is_mouse_over_button(200, 129, 100, 30):
-                    if self.argent.argent >= 100:
-                        self.argent.argent -= 100
+                    if self.argent.argent >= 999:
+                        self.argent.argent -= 999
                         self.liste_poisson.append(Poisson(4, 999, 1000, 1.5))
                         self.total_poisson +=1
             self.level.level_up()
             self.level.gain_exp(self.liste_poisson)
         else:
-            Requin().self.deplacement()
+            if pyxel.btn(pyxel.KEY_RIGHT):
+                self.requin.deplacement('right')
+            elif pyxel.btn(pyxel.KEY_LEFT):
+                self.requin.deplacement('left')
+            elif pyxel.btn(pyxel.KEY_UP):
+                self.requin.deplacement('up')
+                for e in self.liste_poisson:
+                    if self.requin.x < e.x < self.requin.x +20 and self.requin.y < e.y < self.requin.y +20:
+                        self.liste_poisson.remove(e)
+            elif pyxel.btn(pyxel.KEY_DOWN):
+                self.requin.deplacement('down')
             
 
 
     def draw(self):
-        if self.level == 0 or 1 or 2 or 3 :
             pyxel.cls(0)
             pyxel.bltm(0, 0, 0, 0, 0, 256, 160, 0)
             if len(self.liste_poisson) != 0:
@@ -218,22 +239,17 @@ class Aqua_box:
                     pyxel.text(8, 80, f"Pour gagner de l'argent", 7)
                     pyxel.text(8, 88, f"clic gauche sur l'ecran", 7)
             pyxel.text(5, 149.5, f'Nombre de poissons : {len(self.liste_poisson)} / Votre argent : {round(self.argent.argent)}', 7)
-
             pyxel.text(203, 3, f'P. rouge', 7)
             pyxel.text(222, 18, f'100', 7)
-
             pyxel.text(203, 35, f'P. combatant', 7)
             pyxel.text(222, 50, f'200', 7)
-
             pyxel.text(203, 67, f'P. chat', 7)
             pyxel.text(222, 82, f'300', 7)
-
             pyxel.text(203, 99, f'Carpe Koi', 7)
             pyxel.text(222, 114, f'500', 7)
-
             pyxel.text(203, 131, f'Discus', 7)
             pyxel.text(222, 146, f'999', 7)
-
+            self.level.affichage()
             if pyxel.btn(pyxel.KEY_S):
                 pyxel.text(5, 6, f'Argent total : {round(self.argent.argent_tt)}', 7)
                 pyxel.text(5, 14, f'Poissons total : {self.total_poisson}', 7)
@@ -242,40 +258,17 @@ class Aqua_box:
                 pyxel.text(5, 38, f'EXP : {self.level.exp}', 7)
             else:
                 pyxel.text(5, 6, f'S pour stats', 7)
-
-            self.level.affichage()
-
-
-class Menu_jeux:
-    def __init__(self):
-        pyxel.init(16*8, 16*8)  
-        pyxel.load("main_jeu_v2.pyxres")
-        pyxel.mouse(True)
-        pyxel.playm(0, 1, True)
-        pyxel.run(self.update, self.draw)
-        # ne rien mettre apres
-        
-    def update(self):
-        if pyxel.btnp(pyxel.MOUSE_BUTTON_LEFT):
-            if is_mouse_over_button(3*8, 2*8, 9*8, 3*8):
-                ...
-            if is_mouse_over_button(3*8, 7*8, 9*8, 3*8):
-                return 'Sea_inv()'
-            
-
-    def draw(self):
-        pyxel.cls(0)
-        pyxel.bltm(0, 0, 0, 40*8, 0, 16*8, 16*8, 0)
-        pyxel.text(5*8, 3.5*8, f'Aqua box', 1)
-        pyxel.text(5*8, 9.5*8, f'Sea invaders', 1)
-       
-       
-class Lance_jeu:
-    def __init__(self):
-        ...
-    
-    def lance_aqua(self):
-        pyxel.quit()
-        Aqua_box()
-        
-Menu_jeux()
+            if self.level.level == 4:
+                self.requin.affichage()
+                if len(self.liste_poisson) == 0:
+                    pyxel.cls(0)
+                    pyxel.text(8, 30, f'BRAVO !', 7)
+                    pyxel.text(8, 50, f'Argent total : {round(self.argent.argent_tt)}', 7)
+                    pyxel.text(8, 58, f'Poissons total : {self.total_poisson}', 7)
+                    pyxel.text(8, 66, f'Gain par clic: {round(self.argent.multi)}', 7)
+                    pyxel.text(8, 74, f'Duree : {round(time.time() - TEMPS_DEBUT)}', 7)
+                    pyxel.text(8, 82, f'EXP : {self.level.exp}', 7)
+                    
+                    
+if __name__ == '__main__':
+    Aqua_box()
