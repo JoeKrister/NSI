@@ -23,6 +23,8 @@ class Pile:
         self.p = Chainon(n, self.p )
         
     def depiler(self):
+        if self.p.suivant is None:
+            raise AttributeError ("not possible to remove an element from an empty stack")
         v = self.p.valeur
         self.p = self.p.suivant
         return v
@@ -34,11 +36,16 @@ class Pile:
             return self.p.valeur
         
     def __str__(self):
-        if
-        if self.suivant is None :
-            return str(self.valeur)
+        if self.p.suivant is None :
+            return str(self.p.valeur)
         else :
-            return f"{self.valeur} <- {self.suivant}"
+            return f"{self.p.valeur} <- {self.p.suivant}"
+    
+    def _taille(self):
+        nb = 0
+        for i in self.p.valeur:
+            nb = i
+        return i
         
 
 p = Pile()
