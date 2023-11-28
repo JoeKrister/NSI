@@ -52,7 +52,7 @@ class HanoiGame:
         p2 = Pile()
         self.n = 0
         self.piles = [p0, p1, p2]
-        self.petit_a_bouge = False
+        self.petit_a_bouger = False
         self.position_petit = self.piles[0]
         for i in range(n):
             self.piles[0].empiler(n-i)
@@ -64,9 +64,28 @@ class HanoiGame:
                 F: {h.piles[2]}''')
     
     def next_move(self):
-        while 
+        if self.petit_a_bouger == False:
+            positions_possibles = [0, 1, 2].remove([self.position_petit])
+            h.piles[positions_possibles] = self.empiler(n)
+        else :
+            if self.position_petit == 2:
+                self.depiler()
+                h.piles[1] = self.empiler(self.position_petit)
+            elif self.position_petit == 1:
+                self.depiler()
+                h.piles[0] = self.empiler(self.position_petit)
+            elif self.position_petit == 0:
+                self.depiler()
+                h.piles[2] = self.empiler(self.position_petit)
             
-        
-    def solve(self, verbose = True):
-        ...
+            
+            
+            
+    def solve(self, verbose = True) -> int:                
+        if verbose == True :
+            return self.p.show
+        else:
+            return None
 
+h = HanoiGame(3)
+p = Pile()
