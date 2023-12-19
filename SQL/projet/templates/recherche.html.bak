@@ -53,7 +53,7 @@
 	</li>
 	<li>
 		<label for="demo">Démonétisée:</label>
-		<input type="text" id="pc" name="demo" maxlength = "3" />
+		<input type="text" id="pc" name="demo" />
 	</li>
 	<li>
 		<label for="idr">Indice de rareté:</label>
