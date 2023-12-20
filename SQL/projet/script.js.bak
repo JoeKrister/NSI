@@ -1,0 +1,18 @@
+npm install ldrs
+import 'ldrs/grid'
+
+
+
+let type = document.getElementById('pc');
+previous_button.addEventListener('click', change_page);
+
+function change_page(){
+    document.getElementById("pc").src =  "resultats.html";
+	// Default values shown  
+<l-grid
+  size="60"
+  speed="1.5"
+  color="black" 
+></l-grid>
+
+}

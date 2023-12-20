@@ -7,10 +7,17 @@
 {% block content %}
 <h1>Les pièces de Dreo.</h1>
 <p> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. J'espère que vous pourrez assouvir votre curiosité concernant mes pièces !</p>
-<label for="name">Qu'elle pièce voulez-vous voir ?</label>
-<input type="text" id="name" name="name" />
+
+<form action="resultats" method="get">
+	<label for="name">Quelle pièce voulez-vous voir ?</label>
+	<input type="text" id="name" name="name" />
+	<input type="submit" value="Aller à la page">
+</form>
+
+
 <h3>Recherche spécifique: </h3>
 <ul>
+	<form action="resultats" method="get">
 	<li>
 		<label for="nb_ex">Nombre d'exemplaire:</label>
 		<input type="number" id="pc" name = "nb_ex" min="1" max="100"/>
@@ -21,10 +28,13 @@
 	</li>
 	<li>
 		<label for="type">Type:</label>
-		<input type="text" id="pc" name="type" />
+		<select name="type" id="pc">
+				<option> Pièce courante</option>
+                <option> Essaie</option>
+		</select>
 	</li>
 	<li>
-		<label for="date">Date:</label> <! attentuion date a revoir >
+		<label for="date">Date:</label> <! attention date a revoir >
 		<input type="date" id="pc" name="date" />
 	</li>
 	<li>
@@ -53,14 +63,20 @@
 	</li>
 	<li>
 		<label for="demo">Démonétisée:</label>
-		<input type="text" id="pc" name="demo" maxlength = "3" />
+		<input type="radio" id="pc" name="demo" maxlength = "3" value="oui"/>
+			<label for="demo">Oui</label>
+		<input type="radio" id="pc" name="demo" maxlength = "3" value="non"/>
+			<label for="demo">Non</label>
 	</li>
 	<li>
 		<label for="idr">Indice de rareté:</label>
 		<input type="number" id="pc" name="idr" min="0" max="100"/>
 	</li>
+	<input type="submit" value="Aller à la page">
+	</form>
 </ul>
-
+<script src="nasa_js.js">
+        </script>
 
 
 {% endblock %}
