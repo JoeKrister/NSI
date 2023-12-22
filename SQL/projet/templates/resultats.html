@@ -4,7 +4,14 @@
 
 {% block title %}resultat{% endblock %}
 
-{% block content %}<h1>Voici les résultats de votre recherche !</h1>
+{% block content %}<h1>Voici le résultat de votre recherche: </h1>
+<p>Voici un {{nom}}, je l'ai en {{nb_ex}} fois. {{typ}}, {{dev}}
+	La pièce date de {{date}} et émise  par {{emet}}.
+	Elle est composé de {{comp}}, pèse {{pd}}g, est de forme {{forme}}, 
+	avec {{ep}}mm d'épaisseur et {{diam}}mm de diamètre.
+	demonétisé : {{demo}} et possède un indice de rareté numista de {{idr}}	
+	</p>
+
 <footer> Les résultats ne vous satifaissent pas ?
 <a href="http://127.0.0.1:5000"> Recommencez alors !</a></footer>
 {% endblock %}

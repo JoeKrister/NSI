@@ -8,58 +8,61 @@
 <h1>Les pièces de Dreo.</h1>
 <p> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. J'espère que vous pourrez assouvir votre curiosité concernant mes pièces !</p>
 
-<form action="resultats" method="get">
-	<label for="name">Quelle pièce voulez-vous voir ?</label>
-	<input type="text" id="name" name="name" />
+<form action="{{ url_for('resultats') }}" method="post">
+	<label for="nom">Quelle pièce voulez-vous voir ?</label>
+	<input type="text" id="name" name="nom" required />
 	<input type="submit" value="Aller à la page">
 </form>
 
 
 <h3>Recherche spécifique: </h3>
 <ul>
-	<form action="resultats" method="get">
+	<form action="{{ url_for('resultats') }}" method="post">
+	
 	<li>
 		<label for="nb_ex">Nombre d'exemplaire:</label>
-		<input type="number" id="pc" name = "nb_ex" min="1" max="100"/>
+		<input type="number" id="pc" name = "nb_ex" min="1" max="100" value="1"/>
 	</li>
+	
 	<li>
 		<label for="emet">Emetteur:</label>
-		<input type="text" id="pc" name="emet" />
+		<input type="text" id="pc" name="emet" value="france"/>
 	</li>
+	
 	<li>
 		<label for="type">Type:</label>
-		<select name="type" id="pc">
+		<select name="typ" id="pc">
 				<option> Pièce courante</option>
                 <option> Essaie</option>
 		</select>
 	</li>
 	<li>
 		<label for="date">Date:</label> <! attention date a revoir >
-		<input type="date" id="pc" name="date" />
+		<input type="number" id="pc" name="date" min="1642" max="2024" value="1642" />
 	</li>
 	<li>
 		<label for="dev">Devise:</label>
-		<input type="text" id="pc" name="dev" />
+		<input type="text" id="pc" name="dev" value="francs"/>
 	</li>
 	<li>
 		<label for="comp">Composition:</label>
-		<input type="text" id="pc" name="comp" />
+		<input type="text" id="pc" name="comp" value="nickel" />
 	</li>
 	<li>
 		<label for="pd">Poids (g):</label>
-		<input type="number" id="pc" name="pd" step="0.01" min="0" max="100"/>
+		<input type="number" id="pc" name="pd" step="0.01" min="0" max="100" value="1"/>
 	</li>
 	<li>
 		<label for="diam">Diamètre (mm) :</label>
-		<input type="number" id="pc" name="diam" step="0.01" min="0" max="100" />
+		<input type="number" id="pc" name="diam" step="0.01" min="0" max="100" value="1" />
 	</li>
 	<li>
 		<label for="ep">Épaisseur (mm):</label>
-		<input type="number" id="pc" name="ep" step="0.01" min="0" max="100" />
+		<input type="number" id="pc" name="ep" step="0.01" min="0" max="100" value="1" />
 	</li>
 	<li>
 		<label for="forme">Forme:</label>
-		<input type="text" id="pc" name="forme" />
+		<input type="text" id="pc" name="forme" value="ronde" />
 	</li>
 	<li>
 		<label for="demo">Démonétisée:</label>
@@ -70,12 +73,12 @@
 	</li>
 	<li>
 		<label for="idr">Indice de rareté:</label>
-		<input type="number" id="pc" name="idr" min="0" max="100"/>
+		<input type="number" id="pc" name="idr" min="0" max="100" value="1"/>
 	</li>
 	<input type="submit" value="Aller à la page">
 	</form>
 </ul>
-<script src="nasa_js.js">
+<script src="script.js">
         </script>
 
 
