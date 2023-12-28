@@ -2,14 +2,15 @@
 
 {% extends 'base.html' %}
 
-{% block title %}resultat{% endblock %}
+{% block title %}resultats{% endblock %}
 
-{% block content %}<h1>Voici le résultat de votre recherche: </h1>
-<p>Voici un {{nom}}, je l'ai en {{nb_ex}} fois. {{typ}}, {{dev}}
-	La pièce date de {{date}} et émise  par {{emet}}.
-	Elle est composé de {{comp}}, pèse {{pd}}g, est de forme {{forme}}, 
-	avec {{ep}}mm d'épaisseur et {{diam}}mm de diamètre.
-	demonétisé : {{demo}} et possède un indice de rareté numista de {{idr}}	
+{% block content %}
+<h1>Voici le résultat de votre recherche: </h1>
+<p>Voici un {{ nom }}, je l'ai en {{ nb_ex }} fois. {{ typ }}, {{ dev }}
+	La pièce date de {{ date }} et émise  par {{ emet }}.
+	Elle est composé de {{ comp }}, pèse {{ pd }}g, est de forme {{ forme }}, 
+	avec {{ ep }}mm d'épaisseur et {{ diam }}mm de diamètre.
+	demonétisé : {{ demo }} et possède un indice de rareté numista de {{ idr }}	
 	</p>
 
 <footer> Les résultats ne vous satifaissent pas ?

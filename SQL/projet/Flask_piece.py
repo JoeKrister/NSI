@@ -24,11 +24,10 @@ def resultats():
         typ_piece = request.form['typ']
         devise_piece = request.form['dev']
 
-    return render_template('resultats.html', nom=nom_piece, nb_ex = nb_ex_piece, date = date_piece, emet = emetteur_piece,
+    return render_template('resultats.html', nom = nom_piece, nb_ex = nb_ex_piece, date = date_piece, emet = emetteur_piece,
                            comp = composition_piece, pd = poid_piece, forme = forme_piece, ep = epaisseur_piece,
                            diam = diametre_piece , demo =demonetisee_piece,  idr = indice_rarete_piece,
                            typ = typ_piece, dev = devise_piece)
-
 
 
 @app.route('/pieceotheque/')
