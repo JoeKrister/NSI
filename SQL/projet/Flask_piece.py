@@ -1,6 +1,11 @@
 from flask import Flask, render_template, request
+import sqlite3
 
 app = Flask(__name__)
+
+connexion = sqlite3.connect("collection.db")
+curseur = connexion.cursor()
+connexion.commit()
 
 @app.route('/')
 def recherche():
@@ -10,29 +15,39 @@ def recherche():
 @app.route('/resultats',methods = ['POST'])
 def resultats():
     if request.method == 'POST':
-        nom_piece = request.form['nom']
-        nb_ex_piece = request.form['nb_ex']
-        date_piece = request.form['date']
-        emetteur_piece = request.form['emet']
-        composition_piece = request.form['comp']
-        poid_piece = request.form['pd']
-        forme_piece = request.form['forme']
-        epaisseur_piece = request.form['ep']
-        diametre_piece = request.form['diam']
-        demonetisee_piece = request.form['demo']
-        indice_rarete_piece = request.form['idr']
-        typ_piece = request.form['typ']
-        devise_piece = request.form['dev']
+        if 'nom' in request.form:
+            nom_piece = request.form['nom']
+            donnee = ("nom_piece", )
+            rep = curseur.execute("SELECT date FROM collection_piece WHERE nom =?", donnee).fetchone()
+            return render_template('resultats.html', nom = rep[0])
+        
+        else:
+            nb_ex_piece = request.form['nb_ex']
+            date_piece = request.form['date']
+            emetteur_piece = request.form['emet']
+            composition_piece = request.form['comp']
+            poid_piece = request.form['pd']
+            forme_piece = request.form['forme']
+            epaisseur_piece = request.form['ep']
+            diametre_piece = request.form['diam']
+            demonetisee_piece = request.form['demo']
+            indice_rarete_piece = request.form['idr']
+            typ_piece = request.form['typ']
+            devise_piece = request.form['dev']
 
-    return render_template('resultats.html', nom = nom_piece, nb_ex = nb_ex_piece, date = date_piece, emet = emetteur_piece,
-                           comp = composition_piece, pd = poid_piece, forme = forme_piece, ep = epaisseur_piece,
-                           diam = diametre_piece , demo =demonetisee_piece,  idr = indice_rarete_piece,
-                           typ = typ_piece, dev = devise_piece)
+            return render_template('resultats.html', nb_ex = nb_ex_piece, date = date_piece, emet = emetteur_piece,
+                               comp = composition_piece, pd = poid_piece, forme = forme_piece, ep = epaisseur_piece,
+                               diam = diametre_piece , demo =demonetisee_piece,  idr = indice_rarete_piece,
+                               typ = typ_piece, dev = devise_piece)
 
 
 @app.route('/pieceotheque/')
 def tri():
+    
     return render_template('pieceotheque.html')
+
+
+connexion.close()
 
 if __name__ == "__main__":
     app.run()  
