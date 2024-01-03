@@ -6,13 +6,13 @@
 
 {% block content %}
 <h1>Voici le résultat de votre recherche: </h1>
-<p>Voici un {{ nom }}, je l'ai en {{ nb_ex }} fois. {{ typ }}, {{ dev }}
-	La pièce date de {{ date }} et émise  par {{ emet }}.
-	Elle est composé de {{ comp }}, pèse {{ pd }}g, est de forme {{ forme }}, 
-	avec {{ ep }}mm d'épaisseur et {{ diam }}mm de diamètre.
-	demonétisé : {{ demo }} et possède un indice de rareté numista de {{ idr }}	
+	<p>Voici un {{repetition[1]}}, je l'ai en {{repetition[2]}} fois. Elle est du type {{repetition[4]}} et son pays émetteur est : {{repetition[3]}}.
+	Crée en {{repetition[5]}} sa devise est :{{repetition[6]}} et sa composition est :{{repetition[7]}}.
+	Elle pèse {{repetition[8]}}, fait {{repetition[10]}} d'épaisseur, est de forme {{repetition[11]}} et {{repetition[9]}} de diamètre.
+	Cette pièce est demonétisé : {{repetition[12]}} et possède un indice de rareté numista de {{repetition[13]}}
 	
-	{{ rep[0] }}
+	<img src="{{repetition[14]}}">
+	<img src="{{repetition[15]}}">
 	</p>
 
 <footer> Les résultats ne vous satifaissent pas ?
