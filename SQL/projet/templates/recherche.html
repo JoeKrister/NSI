@@ -6,14 +6,18 @@
 
 {% block content %}
 <h1>Les pièces de Dreo.</h1>
-<p> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. J'espère que vous pourrez assouvir votre curiosité concernant mes pièces !</p>
+<p> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. </p>
 
+<!--
 <form action="{{ url_for('resultats') }}" method="post">
 	<label for="nom">Quelle pièce voulez-vous voir ?</label>
 	<input type="text" id="name" name="nom" required />
 	<input type="submit" value="Aller à la page">
 </form>
+-->
 
+<label for="nom">Quelle pièce voulez-vous voir ?</label>
+<input type="text" id="name" name="nom" required />
 
 <h3>Recherche spécifique: </h3>
 <ul>

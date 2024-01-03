@@ -18,7 +18,6 @@ def resultats():
     curseur = connexion.cursor()
     if request.method == 'POST':
         nom_piece = request.form['nom']
-        
         donnee = (str(nom_piece))
         rep = f"""SELECT * FROM collection_piece WHERE nom LIKE '%{donnee}%';"""
         result = curseur.execute(rep).fetchone()
