@@ -21,7 +21,7 @@ def resultats():
             nom_piece = request.form['nom']
             donnee = (str(nom_piece))
             rep = f"""SELECT date FROM collection_piece WHERE nom LIKE '%{donnee}%';"""
-            result = curseur.execute(rep).fetchone()[0]
+            result = curseur.execute(rep).fetchone()
             connexion.close()
             return render_template('resultats.html', repetition = result)
         
@@ -30,7 +30,7 @@ def resultats():
             date_piece = request.form['date']
             emetteur_piece = request.form['emet']
             composition_piece = request.form['comp']
-            poid_piece = request.form['pd']
+            poids_piece = request.form['pd']
             forme_piece = request.form['forme']
             epaisseur_piece = request.form['ep']
             diametre_piece = request.form['diam']
@@ -38,11 +38,14 @@ def resultats():
             indice_rarete_piece = request.form['idr']
             typ_piece = request.form['typ']
             devise_piece = request.form['dev']
+            donnee = [nb_ex_piece, date_piece, emetteur_piece, composition_piece, poid_piece, forme_piece, epaisseur_piece,
+                      diametre_piece, demonetisee_piece, indice_rarete_piece, typ_piece, devise_piece]
+            rep = f"""SELECT * FROM collection_piece WHERE nb_ex LIKE '%{nb_ex_piece}%' AND date LIKE '%{date_piece}%' AND emet LIKE '%{emetteur_piece}%' AND comp LIKE '%{composition_piece}%'
+                        AND pd LIKE '%{poids_piece}%' AND forme LIKE '%{forme_piece}%' AND ed LIKE '%{epaisseur_piece}%' AND diam LIKE '%{diametre_piece}%' AND demo LIKE '%{demonetisee_piece}%'
+                        AND idr LIKE '%{indice_rarete_piece}%' AND typ LIKE '%{typ_piece}%' AND dev LIKE '%{devise_piece}%';"""
+            result = curseur.execute(rep).fetchall()
             connexion.close()
-            return render_template('resultats.html', nb_ex = nb_ex_piece, date = date_piece, emet = emetteur_piece,
-                               comp = composition_piece, pd = poid_piece, forme = forme_piece, ep = epaisseur_piece,
-                               diam = diametre_piece , demo =demonetisee_piece,  idr = indice_rarete_piece,
-                               typ = typ_piece, dev = devise_piece)
+            return render_template('resultats.html', repetition = result)
 
 
 @app.route('/pieceotheque/')
