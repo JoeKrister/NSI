@@ -71,6 +71,9 @@
 			<label for="oui">Oui</label>
 		<input type="radio" id="non" name="demo" value="non" checked/>
 			<label for="non">Non</label>
+		<input type="radio" id="nsp" name="demo" value="none" checked/>
+			<label for="nsp">Ne sais pas</label>
+		
 	</li>
 	<li>
 		<label for="idr">Indice de rareté:</label>
@@ -79,6 +82,10 @@
 	<input type="submit" value="Aller à la page">
 	</form>
 </ul>
+<form action="{{ url_for('pieceotheque') }}" method="post">
+<input type="submit" value="Aller à la page">
+</form>
+
 <script src="script.js">
         </script>
 
