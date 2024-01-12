@@ -3,7 +3,7 @@ import sqlite3
 
 app = Flask(__name__)
 
-connexion = sqlite3.connect("collection.db")
+connexion = sqlite3.connect("collection_21p.db")
 curseur = connexion.cursor()
 connexion.commit()
 
@@ -14,13 +14,13 @@ def recherche():
     
 @app.route('/resultats',methods = ['POST'])
 def resultats():
-    connexion = sqlite3.connect("collection.db")
+    connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
         if 'nom' in request.form:
             nom_piece = request.form['nom']
             donnee = (str(nom_piece))
-            rep = f"""SELECT * FROM collection_piece WHERE nom LIKE '%{donnee}%';"""
+            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{donnee}%';"""
             result = curseur.execute(rep).fetchall()
             connexion.close()
             return render_template('resultats.html', repetition = result)
@@ -40,9 +40,9 @@ def resultats():
             devise_piece = request.form['dev']
             donnee = [nb_ex_piece, date_piece, emetteur_piece, composition_piece, poids_piece, forme_piece, epaisseur_piece,
                       diametre_piece, demonetisee_piece, indice_rarete_piece, typ_piece, devise_piece]
-            rep = f"""SELECT * FROM collection_piece WHERE nb_ex LIKE '%{nb_ex_piece}%' AND date LIKE '%{date_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND composition LIKE '%{composition_piece}%'
-                        AND poids LIKE '%{poids_piece}%' AND forme LIKE '%{forme_piece}%' AND epaisseur LIKE '%{epaisseur_piece}%' AND diametre LIKE '%{diametre_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%'
-                        AND "Indice de rarete" LIKE '%{indice_rarete_piece}%' AND type LIKE '%{typ_piece}%' AND devise LIKE '%{devise_piece}%';"""
+            rep = f"""SELECT * FROM csv_piece WHERE nb_ex LIKE '%{nb_ex_piece}%' AND date LIKE '%{date_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND composition LIKE '%{composition_piece}%'
+                        AND poids LIKE '%{poids_piece}%' AND forme LIKE '%{forme_piece}%' AND epaisseur LIKE '%{epaisseur_piece}%' AND dimension LIKE '%{diametre_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%'
+                        AND indice_de_rarete LIKE '%{indice_rarete_piece}%' AND type LIKE '%{typ_piece}%' AND devise LIKE '%{devise_piece}%';"""
             result = curseur.execute(rep).fetchall()
             connexion.close()
             return render_template('resultats.html', repetition = result)
@@ -51,26 +51,15 @@ def resultats():
 
 
 @app.route('/pieceotheque',methods = ['POST'])
-# def pieceotheque():
-#     if request.method == 'GET':
-#         connexion = sqlite3.connect("collection.db")
-#         curseur = connexion.cursor()
-#         rep = f"""SELECT * FROM collection_piece ;"""
-#         result = curseur.execute(rep).fetchall()
-#         connexion.close()
-#         return render_template('pieceotheque.html', repetition = result)
 
 def pieceotheque():
-    connexion = sqlite3.connect("collection.db")
+    connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
-        if 'nom' in request.form:
-            nom_piece = request.form['nom']
-            donnee = (str(nom_piece))
-            rep = f"""SELECT * FROM collection_piece WHERE nom LIKE '%{donnee}%';"""
-            result = curseur.execute(rep).fetchall()
-            connexion.close()
-            return render_template('resultats.html', repetition = result)
+        rep = f"""SELECT * FROM csv_piece;"""
+        result = curseur.execute(rep).fetchall()
+        connexion.close()
+        return render_template('pieceotheque.html', repetition = result)
 
 
 connexion.close()

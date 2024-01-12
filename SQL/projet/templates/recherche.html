@@ -33,8 +33,10 @@
 	<li>
 		<label for="type">Type:</label>
 		<select name="typ" id="pc">
-				<option> Pièce courante</option>
-                <option> Essaie</option>
+				<option > </option>
+				<option value="Pièce courante"> Pièce courante</option>
+                <option value="Essaie"> Essaie</option>
+			
 		</select>
 	</li>
 	<li>
@@ -71,7 +73,7 @@
 			<label for="oui">Oui</label>
 		<input type="radio" id="non" name="demo" value="non" checked/>
 			<label for="non">Non</label>
-		<input type="radio" id="nsp" name="demo" value="none" checked/>
+		<input type="radio" id="nsp" name="demo" value=""  checked/>
 			<label for="nsp">Ne sais pas</label>
 		
 	</li>
@@ -83,7 +85,7 @@
 	</form>
 </ul>
 <form action="{{ url_for('pieceotheque') }}" method="post">
-<input type="submit" value="Aller à la page">
+<input type="submit" value="toutes les pièces">
 </form>
 
 <script src="script.js">
