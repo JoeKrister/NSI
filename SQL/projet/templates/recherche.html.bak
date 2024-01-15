@@ -21,6 +21,13 @@
 	<form action="{{ url_for('resultats') }}" method="post">
 	
 	<li>
+		<label for="nom2">Nom de la pièce pour la recherche spécifique :</label>
+		<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom2">
+		<input type="submit" value="Aller à la page">
+	
+	</li>
+	
+	<li>
 		<label for="nb_ex">Nombre d'exemplaire:</label>
 		<input type="number" id="pc" name = "nb_ex" min="1" max="100" />
 	</li>
@@ -73,7 +80,7 @@
 			<label for="oui">Oui</label>
 		<input type="radio" id="non" name="demo" value="non" checked/>
 			<label for="non">Non</label>
-		<input type="radio" id="nsp" name="demo"  checked/>
+		<input type="radio" id="nsp" name="demo" value=""  checked/>
 			<label for="nsp">Ne sais pas</label>
 		
 	</li>

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import sqlite3
+from random import randint
 
 app = Flask(__name__)
 
@@ -17,15 +18,16 @@ def resultats():
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
-        if 'nom' in request.form:
+#         if 'nom' in request.form:
+#             nom_piece = request.form['nom']
+#             donnee = (str(nom_piece))
+#             rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{donnee}%';"""
+#             result = curseur.execute(rep).fetchall()
+#             connexion.close()
+#             return render_template('resultats.html', repetition = result)
+#         
+        if 'nom' in request.form or 'nb_ex' in request.form or 'date' in request.form or 'emet' in request.form or 'comp' in request.form or 'pd' in request.form or 'forme' in request.form or 'ep' in request.form or 'diam' in request.form or 'demo' in request.form or 'idr' in request.form or 'typ' in request.form or 'dev' in request.form :
             nom_piece = request.form['nom']
-            donnee = (str(nom_piece))
-            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{donnee}%';"""
-            result = curseur.execute(rep).fetchall()
-            connexion.close()
-            return render_template('resultats.html', repetition = result)
-        
-        if 'nb_ex' in request.form or 'date' in request.form or 'emet' in request.form or 'comp' in request.form or 'pd' in request.form or 'forme' in request.form or 'ep' in request.form or 'diam' in request.form or 'demo' in request.form or 'idr' in request.form or 'typ' in request.form or 'dev' in request.form :
             nb_ex_piece = request.form['nb_ex']
             date_piece = request.form['date']
             emetteur_piece = request.form['emet']
@@ -38,14 +40,15 @@ def resultats():
             indice_rarete_piece = request.form['idr']
             typ_piece = request.form['typ']
             devise_piece = request.form['dev']
-            donnee = [nb_ex_piece, date_piece, emetteur_piece, composition_piece, poids_piece, forme_piece, epaisseur_piece,
+            donnee = [nom_piece, nb_ex_piece, date_piece, emetteur_piece, composition_piece, poids_piece, forme_piece, epaisseur_piece,
                       diametre_piece, demonetisee_piece, indice_rarete_piece, typ_piece, devise_piece]
-            rep = f"""SELECT * FROM csv_piece WHERE nb_ex LIKE '%{nb_ex_piece}%' AND date LIKE '%{date_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND composition LIKE '%{composition_piece}%'
+            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom_piece}%' AND nb_ex LIKE '%{nb_ex_piece}%' AND date LIKE '%{date_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND composition LIKE '%{composition_piece}%'
                         AND poids LIKE '%{poids_piece}%' AND forme LIKE '%{forme_piece}%' AND epaisseur LIKE '%{epaisseur_piece}%' AND dimension LIKE '%{diametre_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%'
                         AND indice_de_rarete LIKE '%{indice_rarete_piece}%' AND type LIKE '%{typ_piece}%' AND devise LIKE '%{devise_piece}%';"""
             result = curseur.execute(rep).fetchall()
             connexion.close()
             return render_template('resultats.html', repetition = result)
+        random
     
     
 
@@ -58,8 +61,9 @@ def pieceotheque():
     if request.method == 'POST':
         rep = f"""SELECT * FROM csv_piece;"""
         result = curseur.execute(rep).fetchall()
+        aleatoire = randint(1, len(result))
         connexion.close()
-        return render_template('pieceotheque.html', repetition = result)
+        return render_template('pieceotheque.html', repetition = aleatoire)
 
 
 connexion.close()
