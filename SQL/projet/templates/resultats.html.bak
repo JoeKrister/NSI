@@ -9,8 +9,6 @@
 
 <h1>Voici le résultat de votre recherche: </h1>
 
-<p>{{ repetition }}</p>	
-
 {% for result in repetition %}
 	<p>Voici un {{result[1]}}, je l'ai en {{result[2]}} fois. Elle est du type {{result[4]}} et son pays émetteur est : {{result[3]}}.
 	Crée en {{result[5]}} sa devise est :{{result[6]}} et sa composition est :{{result[7]}}.

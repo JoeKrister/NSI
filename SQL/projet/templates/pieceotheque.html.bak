@@ -2,16 +2,16 @@
 
 {% extends 'base.html' %}
 
-{% block title %}Hello{% endblock %}
+{% block title %}Pieceotheque{% endblock %}
 
 {% block content %}
-
-{% for result in repetition %}
-	<img src="{{result[14]}}">
-	<img src="{{result[15]}}">
+<p>{{ repetition }}</p>
+{% for aleatoire in repetition %}
+	<img src="{{aleatoire[0]}}">
+	<img src="{{aleatoire[1]}}">
 
 {% endfor %}
 
-<a href="http://127.0.0.1:5000"> Recommencers</a></footer>
+<a href="{{ url_for('recherche') }}"> Recommencer</a></footer>
 
 {% endblock %}

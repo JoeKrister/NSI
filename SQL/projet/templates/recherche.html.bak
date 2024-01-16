@@ -11,21 +11,18 @@
 
 <form action="{{ url_for('resultats') }}" method="post">
 	<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom">
-	<input type="submit" value="Aller à la page">
+<!-- 	<input type="submit" value="Aller à la page"> -->	
 	
-	
-</form>
+<!-- </form> -->
 
 <h3>Recherche spécifique: </h3>
 <ul>
-	<form action="{{ url_for('resultats') }}" method="post">
+	<!-- <form action="{{ url_for('resultats') }}" method="post">
 	
 	<li>
 		<label for="nom2">Nom de la pièce pour la recherche spécifique :</label>
-		<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom2">
-		<input type="submit" value="Aller à la page">
-	
-	</li>
+		<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom2">	
+	</li> -->
 	
 	<li>
 		<label for="nb_ex">Nombre d'exemplaire:</label>
@@ -94,6 +91,12 @@
 <form action="{{ url_for('pieceotheque') }}" method="post">
 <input type="submit" value="toutes les pièces">
 </form>
+
+{% for aleatoire in repetition %}
+<p>{{ repetition }}</p>
+<img src="{{aleatoire[0]}}">
+<img src="{{aleatoire[1]}}">
+{% endfor %}
 
 <script src="script.js">
         </script>

@@ -92,7 +92,11 @@
 <input type="submit" value="toutes les pièces">
 </form>
 
-
+{% for aleatoire in repetition %}
+<p>{{ repetition }}</p>
+<img src="{{repetition[0]}}">
+<img src="{{repetition[1]}}">
+{% endfor %}
 
 <script src="script.js">
         </script>
