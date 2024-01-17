@@ -101,6 +101,6 @@ if __name__ == "__main__" :
     raph = turtle.Turtle()
     raph.speed(0)
     
-    drapeau(2)
+    floconVK(50000, 50000)
     
     turtle.exitonclick()

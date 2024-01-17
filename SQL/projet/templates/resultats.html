@@ -10,13 +10,9 @@
 <h1>Voici le résultat de votre recherche: </h1>
 
 {% for result in repetition %}
-	<p>Voici un {{result[1]}}, je l'ai en {{result[2]}} fois. Elle est du type {{result[4]}} et son pays émetteur est : {{result[3]}}.
-	Crée en {{result[5]}} sa devise est :{{result[6]}} et sa composition est :{{result[7]}}.
-	Elle pèse {{result[8]}}, fait {{result[10]}} d'épaisseur, est de forme {{result[11]}} et {{result[9]}} de diamètre.
-	Cette pièce est demonétisé : {{result[12]}} et possède un indice de rareté numista de {{result[13]}}
-	
-	<img src="{{result[14]}}">
-	<img src="{{result[15]}}">
+
+	<a href="{{ url_for('recherche') }}"> <img src="{{result[14]}}"> </a>
+	<a href="{{ url_for('recherche') }}"> <img src="{{result[15]}}"> </a>
 	</p>
 	
 

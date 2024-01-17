@@ -6,9 +6,9 @@
 
 {% block content %}
 <p>{{ repetition }}</p>
-{% for aleatoire in repetition %}
-	<img src="{{aleatoire[0]}}">
-	<img src="{{aleatoire[1]}}">
+{% for result in repetition %}
+	<img src="{{result[0]}}">
+	<img src="{{result[1]}}">
 
 {% endfor %}
 

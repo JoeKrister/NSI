@@ -92,11 +92,17 @@
 <input type="submit" value="toutes les pièces">
 </form>
 
-{% for aleatoire in repetition %}
+
 <p>{{ repetition }}</p>
-<img src="{{repetition[0]}}">
-<img src="{{repetition[1]}}">
-{% endfor %}
+<a href="{{ url_for('resultats')}}"><img src="{{repetition[0]}}"> </a>
+<a href="{{ url_for('resultats') }}"><img src="{{repetition[1]}}"> </a>
+
+<div class='img-random'>
+  {% for result in repetition %}
+    <a href="{{ url_for('piece', idP=result[0])}}"><img id='items-img'src=" {{ result[15] }}" > </a>
+  {% endfor %}
+</div>
+
 
 <script src="script.js">
         </script>

@@ -46,7 +46,7 @@ def resultats():
             result = curseur.execute(rep).fetchall()
             connexion.close()
             return render_template('resultats.html', repetition = result)
-        random
+        
     
     
 
@@ -59,12 +59,22 @@ def pieceotheque():
     if request.method == 'POST':
         rep = f"""SELECT avers,revers FROM csv_piece;"""
         result = curseur.execute(rep).fetchall()
-        print(result)
-        aleatoire = choice(result)
         connexion.close()
-        print(result)
-        return render_template('pieceotheque.html', repetition = aleatoire)
+        return render_template('pieceotheque.html', repetition = result)
 
+
+
+@app.route('/piece/<idP>')
+
+def piece(idP):
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    rep = f"""SELECT * FROM csv_piece;"""
+    result = curseur.execute(rep).fetchone()
+    connexion.close()
+    return render_template('piece.html', repetition = result)
+    
+    
 
 connexion.close()
 

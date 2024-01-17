@@ -5,12 +5,11 @@
 {% block title %}Pieceotheque{% endblock %}
 
 {% block content %}
-<p>{{ repetition }}</p>
+{% for result in repetition %}
+	<img src="{{result[0]}}">
+	<img src="{{result[1]}}">
 
-	<img src="{{repetition[0]}}">
-	<img src="{{repetition[1]}}">
-
-
+{% endfor %}
 
 <a href="{{ url_for('recherche') }}"> Recommencer</a></footer>
 
