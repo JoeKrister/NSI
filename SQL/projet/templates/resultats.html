@@ -11,13 +11,13 @@
 
 {% for result in repetition %}
 
-	<a href="{{ url_for('recherche') }}"> <img src="{{result[14]}}"> </a>
-	<a href="{{ url_for('recherche') }}"> <img src="{{result[15]}}"> </a>
-	</p>
-	
+	<a href="{{ url_for('piece', idP=result[0]) }}"> <img src="{{result[14]}}"> </a>
+	<a href="{{ url_for('piece', idP=result[0]) }}"> <img src="{{result[15]}}"> </a>	
 
 {% endfor %}
 
-<footer> Les résultats ne vous satifaissent pas ?
-<a href="{{ url_for('recherche') }}"> Recommencez alors !</a></footer>
+<footer>
+	Les résultats ne vous satifaissent pas ?
+	<a href="{{ url_for('recherche') }}"> Recommencez alors !</a>
+</footer>
 {% endblock %}

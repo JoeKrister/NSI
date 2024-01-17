@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import sqlite3
-from random import randint, choice
+from random import randint, choice, sample
 
 app = Flask(__name__)
 
@@ -12,13 +12,13 @@ connexion.commit()
 def recherche():
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
-    rep = f"""SELECT avers,revers FROM csv_piece;"""
-    result = curseur.execute(rep).fetchall()
-    aleatoire = choice(result)
+    rep = """SELECT avers, revers FROM csv_piece;"""
+    all_results = curseur.execute(rep).fetchall()
+    random_results = sample(all_results, min(5, len(all_results)))       # Sélectionne 5 résultats aléatoires
     connexion.close()
-    return render_template('recherche.html', repetition = aleatoire)
+    return render_template('recherche.html', repetition = random_results)
 
-    
+        
 @app.route('/resultats',methods = ['POST'])
 def resultats():
     connexion = sqlite3.connect("collection_21p.db")
@@ -64,15 +64,16 @@ def pieceotheque():
 
 
 
-@app.route('/piece/<idP>')
+@app.route('/piece/<int:idP>')
 
 def piece(idP):
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
-    rep = f"""SELECT * FROM csv_piece;"""
-    result = curseur.execute(rep).fetchone()
+    rep = "SELECT * FROM csv_piece WHERE idP=?;"
+    result = curseur.execute(rep, (idP,)).fetchall()
     connexion.close()
     return render_template('piece.html', repetition = result)
+
     
     
 

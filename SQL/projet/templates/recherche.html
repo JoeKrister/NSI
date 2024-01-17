@@ -11,19 +11,9 @@
 
 <form action="{{ url_for('resultats') }}" method="post">
 	<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom">
-<!-- 	<input type="submit" value="Aller à la page"> -->	
-	
-<!-- </form> -->
 
 <h3>Recherche spécifique: </h3>
-<ul>
-	<!-- <form action="{{ url_for('resultats') }}" method="post">
-	
-	<li>
-		<label for="nom2">Nom de la pièce pour la recherche spécifique :</label>
-		<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom2">	
-	</li> -->
-	
+<ul>	
 	<li>
 		<label for="nb_ex">Nombre d'exemplaire:</label>
 		<input type="number" id="pc" name = "nb_ex" min="1" max="100" />
@@ -88,24 +78,21 @@
 	<input type="submit" value="Aller à la page">
 	</form>
 </ul>
+
 <form action="{{ url_for('pieceotheque') }}" method="post">
 <input type="submit" value="toutes les pièces">
 </form>
 
 
-<p>{{ repetition }}</p>
-<a href="{{ url_for('resultats')}}"><img src="{{repetition[0]}}"> </a>
-<a href="{{ url_for('resultats') }}"><img src="{{repetition[1]}}"> </a>
-
-<div class='img-random'>
-  {% for result in repetition %}
-    <a href="{{ url_for('piece', idP=result[0])}}"><img id='items-img'src=" {{ result[15] }}" > </a>
-  {% endfor %}
-</div>
+{% for result in repetition %}
+	<img src="{{ result[0] }}" alt="Avers">
+{% endfor %}
 
 
-<script src="script.js">
-        </script>
-
+{% for result in results %}
+   <a href="{{ url_for('piece', idP=result[0]) }}">
+	<img src="{{ result[1] }}" alt="{{ result[2] }}">
+   </a>
+{% endfor %}
 
 {% endblock %}
