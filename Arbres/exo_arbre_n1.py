@@ -38,6 +38,32 @@ tree2 = Node('P',
              None)
 
 
+arbre1 = Node('A',
+            Node('B', None, None),
+            Node('C', None, None)
+            )
+
+
+arbre2 = Node('A',
+            Node('B', 
+                Node('C',
+                    Node('D', None, None),
+                    Node('E', None, None)),
+                Node('F', 
+                    Node('G', None, None),
+                    None)
+                ),
+            Node('H',
+                Node('I',
+                    None,
+                    Node('J', None,None)),
+                Node('K',
+                    Node('L', None,None),
+                    None)
+                )                   
+            )
+
+
 def hauteur(t):
     if t is None:
         return 0
@@ -56,4 +82,23 @@ def estVide(t):
     else:
         return False
         
-            
+def visitePrefixe(tree) :
+    print(tree.valeur, end=" ")
+    if not(estVide(tree.gauche)) :
+        visitePrefixe(tree.gauche)
+    if not(estVide(tree.droit)) :
+        visitePrefixe(tree.droit)
+        
+def visiteInfixe(tree) :
+    if not(estVide(tree.gauche)) :
+        visitePrefixe(tree.gauche)
+    print(tree.valeur, end=" ")
+    if not(estVide(tree.droit)) :
+        visitePrefixe(tree.droit)
+
+def visiteSuffixe(tree) :
+    if not(estVide(tree.gauche)) :
+        visitePrefixe(tree.gauche)
+    if not(estVide(tree.droit)) :
+        visitePrefixe(tree.droit)
+    print(tree.valeur, end=" ")
