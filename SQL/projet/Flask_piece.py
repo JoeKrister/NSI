@@ -9,14 +9,14 @@ curseur = connexion.cursor()
 connexion.commit()
 
 @app.route('/')
-def recherche():
+def recherche(): #fonction pour afficher la 1ere page/ page principale 
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
-    rep = """SELECT avers, revers FROM csv_piece;"""
-    all_results = curseur.execute(rep).fetchall()
-    random_results = sample(all_results, min(5, len(all_results)))       # Sélectionne 5 résultats aléatoires
+    rep = """SELECT  idP, avers, revers FROM csv_piece;""" #la variable rep est initialisée avec les données de la db (l'ip de la pièce, l'image avant et arrière) 
+    all_results = curseur.execute(rep).fetchall() #recupère toutes les données 
+    result = sample(all_results, min(5, len(all_results))) #sélectionne 5 résultats aléatoires
     connexion.close()
-    return render_template('recherche.html', repetition = random_results)
+    return render_template('recherche.html', repetition = result) #variable repetition pour la boucle dans recherche.html
 
         
 @app.route('/resultats',methods = ['POST'])
@@ -45,8 +45,11 @@ def resultats():
                         AND indice_de_rarete LIKE '%{indice_rarete_piece}%' AND type LIKE '%{typ_piece}%' AND devise LIKE '%{devise_piece}%';"""
             result = curseur.execute(rep).fetchall()
             connexion.close()
-            return render_template('resultats.html', repetition = result)
-        
+            if result == []:
+                return render_template('vide.html')
+            else:
+                return render_template('resultats.html', repetition = result)
+
     
     
 

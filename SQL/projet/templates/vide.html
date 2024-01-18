@@ -1,0 +1,11 @@
+{# app/templates/vide.html #}
+
+{% extends 'base.html' %}
+
+{% block title %}Il n'y a rien ici{% endblock %}
+
+{% block content %}
+<p>Pas de résultats, veuiller <a href="{{ url_for('recherche') }}"> ressaier.</a></p>
+
+
+{% endblock %}

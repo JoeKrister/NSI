@@ -85,14 +85,11 @@
 
 
 {% for result in repetition %}
-	<img src="{{ result[0] }}" alt="Avers">
-{% endfor %}
 
-
-{% for result in results %}
    <a href="{{ url_for('piece', idP=result[0]) }}">
-	<img src="{{ result[1] }}" alt="{{ result[2] }}">
+	<img src="{{ result[1] }}" alt="Avers">
    </a>
+   
 {% endfor %}
 
 {% endblock %}
