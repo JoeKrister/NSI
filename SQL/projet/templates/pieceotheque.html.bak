@@ -5,13 +5,36 @@
 {% block title %}Pieceotheque{% endblock %}
 
 {% block content %}
-<p>{{ repetition }}</p>
+
+<li>
+		<label for="type">Trier par </label>
+		<select name="typ" id="pc">
+				<option > </option> <!-- option vide pour quand la personne ne sais pas/ne veut pas-->
+				<option value="Nombre d'exemplaire" id="nbr_ex" onclick="sorted_button()">Nombre d'exemplaire:</option>
+                <option value="Emetteur" id="emet" onclick="sorted_button()"> Emetteur: </option>
+				<option value="Type" id="tip" onclick="sorted_button()">Type:</option>
+                <option value="Date" id="date" onclick="sorted_button()">Date:</option>
+				<option value="Devise" id="dev" onclick="sorted_button()">Devise:</option>
+                <option value="Composition" id="comp" onclick="sorted_button()">Composition:</option>
+				<option value="Poids" id="pds" onclick="sorted_button()">Poids:</option>
+                <option value="Diamètre" id="diam" onclick="sorted_button()">Diamètre:</option>	
+				<option value="Épaisseur" id="ep" onclick="sorted_button()">Épaisseur:</option>
+                <option value="Forme" id="forme" onclick="sorted_button()">Forme:</option>
+				<option value="Démonétisée" id="demo" onclick="sorted_button()">Démonétisée:</option>
+                <option value="Indice de rareté" id="idr" onclick="sorted_button()">Indice de rareté:</option>
+
+		</select>
+	</li>
+
 {% for result in repetition %}
-	<img src="{{result[0]}}">
-	<img src="{{result[1]}}">
+
+<a href="{{ url_for('piece', idP=result[0]) }}">
+	<img src="{{result[14]}}">
+	<img src="{{result[15]}}">
+</a>
 
 {% endfor %}
 
-<a href="{{ url_for('recherche') }}"> Recommencer</a></footer>
-
+<a href="{{ url_for('recherche') }}"> Recommencer</a>
+<script type="text/javascript" src="{{url_for('static', filename='script.jv')}}"> </script>
 {% endblock %}

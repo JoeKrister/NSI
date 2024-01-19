@@ -56,11 +56,11 @@ def resultats():
 
 @app.route('/pieceotheque',methods = ['POST'])
 
-def pieceotheque():
+def pieceotheque():  #pour tri: faire requetes pour chaque tri
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
-        rep = f"""SELECT avers,revers FROM csv_piece;"""
+        rep = f"""SELECT * FROM csv_piece;"""
         result = curseur.execute(rep).fetchall()
         connexion.close()
         return render_template('pieceotheque.html', repetition = result)
@@ -79,6 +79,7 @@ def piece(idP):
 
     
     
+
 
 connexion.close()
 

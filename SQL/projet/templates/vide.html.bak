@@ -5,7 +5,7 @@
 {% block title %}Il n'y a rien ici{% endblock %}
 
 {% block content %}
-<p>Pas de résultats, veuillez <a href="{{ url_for('recherche') }}"> réessayer.</a></p>
+<p>Pas de résultats, veuiller <a href="{{ url_for('recherche') }}"> réessayer.</a></p>
 
 
 {% endblock %}
