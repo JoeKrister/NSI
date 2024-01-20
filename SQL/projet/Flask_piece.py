@@ -56,7 +56,7 @@ def resultats():
 
 @app.route('/pieceotheque',methods = ['POST'])
 
-def pieceotheque():  #pour tri: faire requetes pour chaque tri
+def pieceotheque():  #pour tri: faire requetes sql pour chaque tri
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
