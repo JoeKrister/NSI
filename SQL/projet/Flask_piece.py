@@ -39,7 +39,7 @@ def resultats():
             typ_piece = request.form['typ']
             devise_piece = request.form['dev']
             donnee = [nom_piece, nb_ex_piece, date_piece, emetteur_piece, composition_piece, poids_piece, forme_piece, epaisseur_piece,
-                      diametre_piece, demonetisee_piece, indice_rarete_piece, typ_piece, devise_piece]
+                       diametre_piece, demonetisee_piece, indice_rarete_piece, typ_piece, devise_piece]
             rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom_piece}%' AND nb_ex LIKE '%{nb_ex_piece}%' AND date LIKE '%{date_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND composition LIKE '%{composition_piece}%'
                         AND poids LIKE '%{poids_piece}%' AND forme LIKE '%{forme_piece}%' AND epaisseur LIKE '%{epaisseur_piece}%' AND dimension LIKE '%{diametre_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%'
                         AND indice_de_rarete LIKE '%{indice_rarete_piece}%' AND type LIKE '%{typ_piece}%' AND devise LIKE '%{devise_piece}%';"""
@@ -60,11 +60,25 @@ def pieceotheque():  #pour tri: faire requetes sql pour chaque tri
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
-        rep = f"""SELECT * FROM csv_piece;"""
+        nb_ex_piece = request.form['nb_ex']
+        rep = f"""SELECT nom FROM csv_piece ORDER BY nb_ex ASC;"""
         result = curseur.execute(rep).fetchall()
         connexion.close()
         return render_template('pieceotheque.html', repetition = result)
 
+
+@app.route('/tri_nombre',methods = ['POST'])
+def tri_nombre():
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'nb_ex' in request.form:
+            nb_ex_piece = request.form['nb_ex']
+            rep = f"""SELECT * FROM csv_piece ORDER BY nb_ex ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_nombre.html', repetition = result)
+    
 
 
 @app.route('/piece/<int:idP>')
