@@ -59,27 +59,25 @@ def resultats():
 def pieceotheque():  #pour tri: faire requetes sql pour chaque tri
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
-    if request.method == 'POST':
-        nb_ex_piece = request.form['nb_ex']
-        rep = f"""SELECT nom FROM csv_piece ORDER BY nb_ex ASC;"""
-        result = curseur.execute(rep).fetchall()
-        connexion.close()
-        return render_template('pieceotheque.html', repetition = result)
+    rep = f"""SELECT * FROM csv_piece;"""
+    result = curseur.execute(rep).fetchall()
+    connexion.close()
+    return render_template('pieceotheque.html', repetition = result)
 
-
-@app.route('/tri_nombre',methods = ['POST'])
-def tri_nombre():
-    connexion = sqlite3.connect("collection_21p.db")
-    curseur = connexion.cursor()
-    if request.method == 'POST':
-        if 'nb_ex' in request.form:
-            nb_ex_piece = request.form['nb_ex']
-            rep = f"""SELECT * FROM csv_piece ORDER BY nb_ex ASC;"""
-            result = curseur.execute(rep).fetchall()
-            connexion.close()
-            return render_template('tri_nombre.html', repetition = result)
-    
-
+# 
+# @app.route('/tri_nombre',methods = ['POST'])
+# def tri_nombre():
+#     connexion = sqlite3.connect("collection_21p.db")
+#     curseur = connexion.cursor()
+#     if request.method == 'POST':
+#         if 'nb_ex' in request.form:
+#             nb_ex_piece = request.form['nb_ex']
+#             rep = f"""SELECT * FROM csv_piece ORDER BY nb_ex ASC;"""
+#             result = curseur.execute(rep).fetchall()
+#             connexion.close()
+#             return render_template('tri_nombre.html', repetition = result)
+#     
+# 
 
 @app.route('/piece/<int:idP>')
 
@@ -92,9 +90,6 @@ def piece(idP):
     return render_template('piece.html', repetition = result)
 
     
-    
-
-
 connexion.close()
 
 if __name__ == "__main__":

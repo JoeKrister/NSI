@@ -7,24 +7,7 @@
 {% block content %}
 
 <li>
-	<label for="type">Trier par </label>
-	<select name="typ" id="pc">
-			<option > </option> option vide pour quand la personne ne sais pas/ne veut pas
-			<option value="Nombre d'exemplaire" id="nb_ex" >Nombre d'exemplaire:</option>
-            <option value="Emetteur" id="emet" > Emetteur: </option>
-			<option value="Type" id="tip" >Type:</option>
-            <option value="Date" id="date" >Date:</option>
-			<option value="Devise" id="dev" >Devise:</option>
-            <option value="Composition" id="comp" >Composition:</option>
-			<option value="Poids" id="pds" >Poids:</option>
-            <option value="Diamètre" id="diam" >Diamètre:</option>	
-			<option value="Épaisseur" id="ep" >Épaisseur:</option>
-            <option value="Forme" id="forme" >Forme:</option>
-			<option value="Démonétisée" id="demo" >Démonétisée:</option>
-            <option value="Indice de rareté" id="idr" >Indice de rareté:</option>
-
-	</select>
-		
+	
 	<form action="{{ url_for('tri_nombre') }}" method="post">
 		<input type="submit" value="trier par nombre">
 	</form>
