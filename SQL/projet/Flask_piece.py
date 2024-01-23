@@ -18,6 +18,8 @@ def recherche(): #fonction pour afficher la 1ere page/ page principale
     connexion.close()
     return render_template('recherche.html', repetition = result) #variable repetition pour la boucle dans recherche.html
 
+
+
         
 @app.route('/resultats',methods = ['POST'])
 def resultats():
@@ -56,7 +58,7 @@ def resultats():
 
 @app.route('/pieceotheque',methods = ['POST'])
 
-def pieceotheque():  #pour tri: faire requetes sql pour chaque tri
+def pieceotheque():  #fonction pour afficher toutes les pièces
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     rep = f"""SELECT * FROM csv_piece;"""
@@ -64,23 +66,55 @@ def pieceotheque():  #pour tri: faire requetes sql pour chaque tri
     connexion.close()
     return render_template('pieceotheque.html', repetition = result)
 
-# 
-# @app.route('/tri_nombre',methods = ['POST'])
-# def tri_nombre():
-#     connexion = sqlite3.connect("collection_21p.db")
-#     curseur = connexion.cursor()
-#     if request.method == 'POST':
-#         if 'nb_ex' in request.form:
-#             nb_ex_piece = request.form['nb_ex']
-#             rep = f"""SELECT * FROM csv_piece ORDER BY nb_ex ASC;"""
-#             result = curseur.execute(rep).fetchall()
-#             connexion.close()
-#             return render_template('tri_nombre.html', repetition = result)
-#     
-# 
+
+
+
+@app.route('/tri_nombre' ,methods = ['POST'])
+def tri_nombre():  #fonction pour afficher toutes les pièces selon leurs nombres
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_nb' in request.form:
+            nb_ex_piece = request.form['tri_nb']
+            rep = f"""SELECT * FROM csv_piece ORDER BY nb_ex ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_nombre.html', repetition = result)
+
+
+
+
+@app.route('/tri_emetteur' ,methods = ['POST'])
+def tri_emetteur():  #fonction pour afficher toutes les pièces selon leur emetteur
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_emet' in request.form:
+            emetteur_piece = request.form['tri_emet']
+            rep = f"""SELECT * FROM csv_piece ORDER BY emetteur ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_emetteur.html', repetition = result)
+    
+    
+    
+    
+@app.route('/tri_date' ,methods = ['POST'])
+def tri_date(): #fonction pour afficher toutes les pièces selon leur date
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_date' in request.form:
+            date_piece = request.form['tri_date']
+            rep = f"""SELECT * FROM csv_piece ORDER BY date ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_date.html', repetition = result)
+
+
+
 
 @app.route('/piece/<int:idP>')
-
 def piece(idP):
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()

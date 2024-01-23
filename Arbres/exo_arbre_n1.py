@@ -102,3 +102,16 @@ def visiteSuffixe(tree) :
     if not(estVide(tree.droit)) :
         visitePrefixe(tree.droit)
     print(tree.valeur, end=" ")
+
+def visiteLargeur(tree):
+    f = []
+    f.insert(0, tree)
+    while f != []:
+        nd = f.pop()
+        print(nd.valeur, end=" - ")
+        if nd.gauche != None:
+            f.insert(0, nd.gauche)
+        if nd.droit != None:
+            f.insert(0, nd.droit)
+        
+    

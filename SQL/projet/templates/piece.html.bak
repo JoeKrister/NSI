@@ -5,6 +5,7 @@
 {% block title %}piece{% endblock %}
 
 {% block content %}
+<h1>{{result[1]}}</h1>
 
 {% for result in repetition %}
 
@@ -24,8 +25,8 @@
 		<li>Démonétisation: {{result[12]}}</li>
 		<li>Indice de rareté numista: {{result[13]}}</li>
 	</ul>
-<img src="{{result[14]}}">
-<img src="{{result[15]}}">
+<img class="piece" src="{{result[14]}}">
+<img class="piece" src="{{result[15]}}">
 </p>
 	
 
