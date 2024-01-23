@@ -26,13 +26,13 @@ def resultats():
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':       
-        if 'nom' in request.form or 'nb_ex' in request.form or 'date' in request.form or 'emet' in request.form or 'comp' in request.form or 'pd' in request.form or 'forme' in request.form or 'ep' in request.form or 'diam' in request.form or 'demo' in request.form or 'idr' in request.form or 'typ' in request.form or 'dev' in request.form :
+        if 'nom' in request.form or 'nb_ex' in request.form or 'date' in request.form or 'emet' in request.form or 'comp' in request.form or 'pds' in request.form or 'forme' in request.form or 'ep' in request.form or 'diam' in request.form or 'demo' in request.form or 'idr' in request.form or 'typ' in request.form or 'dev' in request.form :
             nom_piece = request.form['nom']
             nb_ex_piece = request.form['nb_ex']
             date_piece = request.form['date']
             emetteur_piece = request.form['emet']
             composition_piece = request.form['comp']
-            poids_piece = request.form['pd']
+            poids_piece = request.form['pds']
             forme_piece = request.form['forme']
             epaisseur_piece = request.form['ep']
             diametre_piece = request.form['diam']
@@ -63,7 +63,7 @@ def pieceotheque():  #fonction pour afficher toutes les pièces
     curseur = connexion.cursor()
     rep = f"""SELECT * FROM csv_piece;"""
     result = curseur.execute(rep).fetchall()
-    connexion.close()
+    connexion.close()   
     return render_template('pieceotheque.html', repetition = result)
 
 
@@ -114,6 +114,34 @@ def tri_date(): #fonction pour afficher toutes les pièces selon leur date
 
 
 
+@app.route('/tri_composition' ,methods = ['POST'])
+def tri_composition(): #fonction pour afficher toutes les pièces selon leur composition
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_comp' in request.form:
+            comp_piece = request.form['tri_comp']
+            rep = f"""SELECT * FROM csv_piece ORDER BY composition ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_composition.html', repetition = result)
+        
+        
+        
+        
+@app.route('/tri_poids' ,methods = ['POST'])
+def tri_poids(): #fonction pour afficher toutes les pièces selon leur poids
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_pds' in request.form:
+            comp_piece = request.form['tri_pds']
+            rep = f"""SELECT * FROM csv_piece ORDER BY poids ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_poids.html', repetition = result)
+
+
 @app.route('/piece/<int:idP>')
 def piece(idP):
     connexion = sqlite3.connect("collection_21p.db")
@@ -122,6 +150,10 @@ def piece(idP):
     result = curseur.execute(rep, (idP,)).fetchall()
     connexion.close()
     return render_template('piece.html', repetition = result)
+
+
+
+
 
     
 connexion.close()
