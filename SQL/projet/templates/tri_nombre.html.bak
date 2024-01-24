@@ -15,6 +15,6 @@
 	
 {% endfor %}
 
-<a href="{{ url_for('piecotheque') }}"> Retour</a>
+<a href="{{ url_for('pieceotheque') }}"> Retour</a>
 
 {% endblock %}

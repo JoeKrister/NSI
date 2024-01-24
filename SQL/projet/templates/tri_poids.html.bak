@@ -1,16 +1,16 @@
-{# app/templates/tri_date.html #}
+{# app/templates/tri_poids.html #}
 
 {% extends 'base.html' %}
 
-{% block title %}trié par date{% endblock %}
+{% block title %}trié par poids{% endblock %}
 
 {% block content %}
 
 
 {% for result in repetition %}
 <a href="{{ url_for('piece', idP=result[0]) }}">
-	<img class="piece" src="{{result[14]}}">
-	<img class="piece" src="{{result[15]}}">
+	<img class="piece" src="{{result[14]}}" title="{{result[6]}}">
+	<img class="piece" src="{{result[15]}}" title="{{result[6]}}">
 </a>
 {% endfor %}
 

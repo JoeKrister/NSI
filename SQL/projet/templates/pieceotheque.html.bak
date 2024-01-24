@@ -6,7 +6,6 @@
 
 {% block content %}
 
-<ul>
 	<li>	
 		<form action="{{ url_for('tri_nombre') }}" method="post">
 			<input type="submit" value="trier par nombre" name="tri_nb">
@@ -18,7 +17,24 @@
 			<input type="submit" value="trier par émetteur" name="tri_emet">
 		</form>
 	</li>
-</ul>
+	
+	<li>	
+		<form action="{{ url_for('tri_date') }}" method="post">
+			<input type="submit" value="trier par date" name="tri_date">
+		</form>
+	</li>
+	
+	<li>	
+		<form action="{{ url_for('tri_composition') }}" method="post">
+			<input type="submit" value="trier par date" name="tri_comp">
+		</form>
+	</li>
+	
+	<li>	
+		<form action="{{ url_for('tri_poids') }}" method="post">
+			<input type="submit" value="trier par date" name="tri_pds">
+		</form>
+	</li>
 
 
 {% for result in repetition %}

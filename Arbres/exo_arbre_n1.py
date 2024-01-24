@@ -4,6 +4,8 @@ class Node:
         self.gauche = gauche
         self.droit = droit
 
+### Arbres de test
+        
 tree = Node(1,
             Node(2,
                  Node(3, None, None),
@@ -63,6 +65,16 @@ arbre2 = Node('A',
                 )                   
             )
 
+abr2 = Node(3,
+            Node(1,
+                 None,
+                 Node(2,None,None)),
+            Node(5,
+                 Node(4,None, None),
+                 Node(6, None, None))
+            )
+
+### Fonctions arbres simple
 
 def hauteur(t):
     if t is None:
@@ -113,5 +125,24 @@ def visiteLargeur(tree):
             f.insert(0, nd.gauche)
         if nd.droit != None:
             f.insert(0, nd.droit)
-        
+
+### Fonctions  ABR
+def appartient(x, tree) :
+    if tree == None :
+        return False
+    elif tree.valeur == x :
+        return True
+    elif x < tree.valeur :
+        return appartient(x, tree.gauche)
+    else :
+        return appartient(x, tree.droit)
     
+def minimum(tree):
+    if estVide(tree.gauche):
+        return tree.valeur
+    return minimum(tree.gauche)
+
+def maximum(tree):
+    if estVide(tree.droit):
+        return tree.valeur
+    return maximum(tree.droit)

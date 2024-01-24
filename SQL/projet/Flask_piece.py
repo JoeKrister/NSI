@@ -26,25 +26,23 @@ def resultats():
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':       
-        if 'nom' in request.form or 'nb_ex' in request.form or 'date' in request.form or 'emet' in request.form or 'comp' in request.form or 'pds' in request.form or 'forme' in request.form or 'ep' in request.form or 'diam' in request.form or 'demo' in request.form or 'idr' in request.form or 'typ' in request.form or 'dev' in request.form :
+        if 'nom' in request.form or 'nb_ex' in request.form or 'emet' in request.form or 'typ' in request.form or 'date' in request.form or 'dev' in request.form or 'comp' in request.form or 'pds' in request.form or 'diam' in request.form or 'ep' in request.form or 'forme' in request.form or 'demo' in request.form or 'idr' in request.form :
             nom_piece = request.form['nom']
             nb_ex_piece = request.form['nb_ex']
-            date_piece = request.form['date']
             emetteur_piece = request.form['emet']
+            typ_piece = request.form['typ']            
+            date_piece = request.form['date']
+            devise_piece = request.form['dev']
             composition_piece = request.form['comp']
             poids_piece = request.form['pds']
-            forme_piece = request.form['forme']
+            dimension_piece = request.form['dim']    
             epaisseur_piece = request.form['ep']
-            diametre_piece = request.form['diam']
+            forme_piece = request.form['forme']
             demonetisee_piece = request.form['demo']
             indice_rarete_piece = request.form['idr']
-            typ_piece = request.form['typ']
-            devise_piece = request.form['dev']
-            donnee = [nom_piece, nb_ex_piece, date_piece, emetteur_piece, composition_piece, poids_piece, forme_piece, epaisseur_piece,
-                       diametre_piece, demonetisee_piece, indice_rarete_piece, typ_piece, devise_piece]
-            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom_piece}%' AND nb_ex LIKE '%{nb_ex_piece}%' AND date LIKE '%{date_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND composition LIKE '%{composition_piece}%'
-                        AND poids LIKE '%{poids_piece}%' AND forme LIKE '%{forme_piece}%' AND epaisseur LIKE '%{epaisseur_piece}%' AND dimension LIKE '%{diametre_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%'
-                        AND indice_de_rarete LIKE '%{indice_rarete_piece}%' AND type LIKE '%{typ_piece}%' AND devise LIKE '%{devise_piece}%';"""
+            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom_piece}%' AND nb_ex LIKE '%{nb_ex_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND type LIKE '%{typ_piece}%' AND date LIKE '%{date_piece}%'
+                        AND devise LIKE '%{devise_piece}%' AND composition LIKE '%{composition_piece}%' AND poids LIKE '%{poids_piece}%' AND dimension LIKE '%{dimension_piece}%' AND epaisseur LIKE '%{epaisseur_piece}%'
+                        AND forme LIKE '%{forme_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%' AND indice_de_rarete LIKE '%{indice_rarete_piece}%' ;"""
             result = curseur.execute(rep).fetchall()
             connexion.close()
             if result == []:
@@ -66,8 +64,7 @@ def pieceotheque():  #fonction pour afficher toutes les pièces
     connexion.close()   
     return render_template('pieceotheque.html', repetition = result)
 
-
-
+### Fonctions de tri ascendant
 
 @app.route('/tri_nombre' ,methods = ['POST'])
 def tri_nombre():  #fonction pour afficher toutes les pièces selon leurs nombres
@@ -82,8 +79,6 @@ def tri_nombre():  #fonction pour afficher toutes les pièces selon leurs nombre
             return render_template('tri_nombre.html', repetition = result)
 
 
-
-
 @app.route('/tri_emetteur' ,methods = ['POST'])
 def tri_emetteur():  #fonction pour afficher toutes les pièces selon leur emetteur
     connexion = sqlite3.connect("collection_21p.db")
@@ -95,8 +90,19 @@ def tri_emetteur():  #fonction pour afficher toutes les pièces selon leur emett
             result = curseur.execute(rep).fetchall()
             connexion.close()
             return render_template('tri_emetteur.html', repetition = result)
-    
-    
+        
+
+@app.route('/tri_type' ,methods = ['POST'])
+def tri_type():  #fonction pour afficher toutes les pièces selon leur type  -- a faire html--
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_typ' in request.form:
+            emetteur_piece = request.form['tri_typ']
+            rep = f"""SELECT * FROM csv_piece ORDER BY type ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_type.html', repetition = result)
     
     
 @app.route('/tri_date' ,methods = ['POST'])
@@ -110,8 +116,19 @@ def tri_date(): #fonction pour afficher toutes les pièces selon leur date
             result = curseur.execute(rep).fetchall()
             connexion.close()
             return render_template('tri_date.html', repetition = result)
+        
 
-
+@app.route('/tri_devise' ,methods = ['POST'])
+def tri_devise(): #fonction pour afficher toutes les pièces selon leur devise -- a faire html--
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_dev' in request.form:
+            date_piece = request.form['tri_dev']
+            rep = f"""SELECT * FROM csv_piece ORDER BY devise ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_devise.html', repetition = result)
 
 
 @app.route('/tri_composition' ,methods = ['POST'])
@@ -126,9 +143,7 @@ def tri_composition(): #fonction pour afficher toutes les pièces selon leur com
             connexion.close()
             return render_template('tri_composition.html', repetition = result)
         
-        
-        
-        
+
 @app.route('/tri_poids' ,methods = ['POST'])
 def tri_poids(): #fonction pour afficher toutes les pièces selon leur poids
     connexion = sqlite3.connect("collection_21p.db")
@@ -140,6 +155,50 @@ def tri_poids(): #fonction pour afficher toutes les pièces selon leur poids
             result = curseur.execute(rep).fetchall()
             connexion.close()
             return render_template('tri_poids.html', repetition = result)
+        
+
+@app.route('/tri_dimension' ,methods = ['POST'])
+def tri_dimension(): #fonction pour afficher toutes les pièces selon leur dimension -- a faire html--
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_dim' in request.form:
+            date_piece = request.form['tri_dim']
+            rep = f"""SELECT * FROM csv_piece ORDER BY dimension ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_dimension.html', repetition = result)
+        
+        
+@app.route('/tri_epaisseur' ,methods = ['POST'])
+def tri_epaisseur(): #fonction pour afficher toutes les pièces selon leur épaisseur -- a faire html--
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_ep' in request.form:
+            date_piece = request.form['tri_ep']
+            rep = f"""SELECT * FROM csv_piece ORDER BY epaisseur ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_epaisseur.html', repetition = result)
+        
+        
+@app.route('/tri_forme' ,methods = ['POST'])
+def tri_forme(): #fonction pour afficher toutes les pièces selon leur forme -- a faire html--
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_forme' in request.form:
+            date_piece = request.form['tri_forme']
+            rep = f"""SELECT * FROM csv_piece ORDER BY forme ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_forme.html', repetition = result)
+
+
+
+
+
 
 
 @app.route('/piece/<int:idP>')

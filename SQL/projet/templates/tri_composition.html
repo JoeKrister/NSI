@@ -1,13 +1,14 @@
-{# app/templates/tri_date.html #}
+{# app/templates/tri_composition.html #}
 
 {% extends 'base.html' %}
 
-{% block title %}trié par date{% endblock %}
+{% block title %}trié par composition{% endblock %}
 
 {% block content %}
 
 
 {% for result in repetition %}
+<p> {{result[7]}} </p>
 <a href="{{ url_for('piece', idP=result[0]) }}">
 	<img class="piece" src="{{result[14]}}">
 	<img class="piece" src="{{result[15]}}">

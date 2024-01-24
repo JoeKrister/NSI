@@ -1,8 +1,8 @@
-{# app/templates/tri_date.html #}
+{# app/templates/tri_composition.html #}
 
 {% extends 'base.html' %}
 
-{% block title %}trié par date{% endblock %}
+{% block title %}trié par composition{% endblock %}
 
 {% block content %}
 
