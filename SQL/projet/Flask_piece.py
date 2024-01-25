@@ -20,7 +20,8 @@ def recherche(): #fonction pour afficher la 1ere page/ page principale
 
 
 
-        
+
+
 @app.route('/resultats',methods = ['POST'])
 def resultats():
     connexion = sqlite3.connect("collection_21p.db")
@@ -49,13 +50,24 @@ def resultats():
                 return render_template('vide.html')
             else:
                 return render_template('resultats.html', repetition = result)
+            
+            
+            
+            
+            
+@app.route('/piece/<int:idP>')
+def piece(idP):  #fonction pour l'affichage unique de la pièce
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    rep = "SELECT * FROM csv_piece WHERE idP=?;" #selectionne la ligne selon l'ip rentrée
+    result = curseur.execute(rep, (idP,)).fetchall()
+    connexion.close()
+    return render_template('piece.html', repetition = result)
 
-    
-    
+
 
 
 @app.route('/pieceotheque',methods = ['POST'])
-
 def pieceotheque():  #fonction pour afficher toutes les pièces
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
@@ -64,7 +76,9 @@ def pieceotheque():  #fonction pour afficher toutes les pièces
     connexion.close()   
     return render_template('pieceotheque.html', repetition = result)
 
+
 ### Fonctions de tri ascendant
+
 
 @app.route('/tri_nombre' ,methods = ['POST'])
 def tri_nombre():  #fonction pour afficher toutes les pièces selon leurs nombres
@@ -93,7 +107,7 @@ def tri_emetteur():  #fonction pour afficher toutes les pièces selon leur emett
         
 
 @app.route('/tri_type' ,methods = ['POST'])
-def tri_type():  #fonction pour afficher toutes les pièces selon leur type  -- a faire html--
+def tri_type():  #fonction pour afficher toutes les pièces selon leur type
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
@@ -119,7 +133,7 @@ def tri_date(): #fonction pour afficher toutes les pièces selon leur date
         
 
 @app.route('/tri_devise' ,methods = ['POST'])
-def tri_devise(): #fonction pour afficher toutes les pièces selon leur devise -- a faire html--
+def tri_devise(): #fonction pour afficher toutes les pièces selon leur devise
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
@@ -158,7 +172,7 @@ def tri_poids(): #fonction pour afficher toutes les pièces selon leur poids
         
 
 @app.route('/tri_dimension' ,methods = ['POST'])
-def tri_dimension(): #fonction pour afficher toutes les pièces selon leur dimension -- a faire html--
+def tri_dimension(): #fonction pour afficher toutes les pièces selon leur dimension
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
@@ -171,7 +185,7 @@ def tri_dimension(): #fonction pour afficher toutes les pièces selon leur dimen
         
         
 @app.route('/tri_epaisseur' ,methods = ['POST'])
-def tri_epaisseur(): #fonction pour afficher toutes les pièces selon leur épaisseur -- a faire html--
+def tri_epaisseur(): #fonction pour afficher toutes les pièces selon leur épaisseur
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
@@ -184,7 +198,7 @@ def tri_epaisseur(): #fonction pour afficher toutes les pièces selon leur épai
         
         
 @app.route('/tri_forme' ,methods = ['POST'])
-def tri_forme(): #fonction pour afficher toutes les pièces selon leur forme -- a faire html--
+def tri_forme(): #fonction pour afficher toutes les pièces selon leur forme
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
@@ -196,25 +210,46 @@ def tri_forme(): #fonction pour afficher toutes les pièces selon leur forme -- 
             return render_template('tri_forme.html', repetition = result)
 
 
-
-
-
-
-
-@app.route('/piece/<int:idP>')
-def piece(idP):
+@app.route('/tri_demonetise' ,methods = ['POST'])
+def tri_demonetise(): #fonction pour afficher toutes les pièces selon leur demonetisation
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
-    rep = "SELECT * FROM csv_piece WHERE idP=?;"
-    result = curseur.execute(rep, (idP,)).fetchall()
-    connexion.close()
-    return render_template('piece.html', repetition = result)
+    if request.method == 'POST':
+        if 'tri_demo' in request.form:
+            rep = f"""SELECT * FROM csv_piece ORDER BY demonetisee ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_demonetise.html', repetition = result)
+        
+        
+@app.route('/tri_idr' ,methods = ['POST'])
+def tri_idr(): #fonction pour afficher toutes les pièces selon leur indice de rareté
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    if request.method == 'POST':
+        if 'tri_idr' in request.form:
+            date_piece = request.form['tri_idr']
+            rep = f"""SELECT * FROM csv_piece ORDER BY indice_de_rarete ASC;"""
+            result = curseur.execute(rep).fetchall()
+            connexion.close()
+            return render_template('tri_idr.html', repetition = result)
+
+
+
+
+@app.route('/pieceothequeD',methods = ['POST'])
+def pieceothequeD():  #fonction pour afficher toutes les pièces de manière descendante
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    rep = f"""SELECT * FROM csv_piece;"""
+    result = curseur.execute(rep).fetchall()
+    connexion.close()   
+    return render_template('pieceothequeD.html', repetition = result)
 
 
 
 
 
-    
 connexion.close()
 
 if __name__ == "__main__":

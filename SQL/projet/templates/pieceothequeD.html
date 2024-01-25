@@ -1,4 +1,4 @@
-{# app/templates/pieceotheque.html #}
+{# app/templates/pieceothequeD.html #}
 
 {% extends 'base.html' %}
 
@@ -6,10 +6,9 @@
 
 {% block content %}
 
-	<input type="radio" onclick="inversement()" value="trier par descendant" name="tri" value="descendant" checked="">
-		<label for="tri_dsc">Descendant</label>
-	<input type="radio" onclick="inversement()" value="trier par ascendant" name="tri" value="ascendant" checked="">
-		<label for="tri_asc">Ascendant</label>
+<form action="{{ url_for('pieceotheque') }}" method="post">
+	<input type="submit" onclick="inversement()" value="trier par ascendant" name="tri_asc">
+</form>
 
 	<li>	
 		<form action="{{ url_for('tri_nombre') }}" method="post">
