@@ -74,6 +74,9 @@ abr2 = Node(3,
                  Node(6, None, None))
             )
 
+
+
+
 ### Fonctions arbres simple
 
 def hauteur(t):
@@ -88,7 +91,7 @@ def taille(t):
     else:
         return 1 + taille(t.gauche)+taille(t.droit)
     
-def estVide(t):
+def est_vide(t):
     if t is None:
         return True
     else:
@@ -96,34 +99,34 @@ def estVide(t):
         
 def visitePrefixe(tree) :
     print(tree.valeur, end=" ")
-    if not(estVide(tree.gauche)) :
+    if not(est_vide(tree.gauche)) :
         visitePrefixe(tree.gauche)
-    if not(estVide(tree.droit)) :
+    if not(est_vide(tree.droit)) :
         visitePrefixe(tree.droit)
         
 def visiteInfixe(tree) :
-    if not(estVide(tree.gauche)) :
-        visitePrefixe(tree.gauche)
+    if not(est_vide(tree.gauche)) :
+        visiteInfixe(tree.gauche)
     print(tree.valeur, end=" ")
-    if not(estVide(tree.droit)) :
-        visitePrefixe(tree.droit)
+    if not(est_vide(tree.droit)) :
+        visiteInfixe(tree.droit)
 
 def visiteSuffixe(tree) :
-    if not(estVide(tree.gauche)) :
-        visitePrefixe(tree.gauche)
-    if not(estVide(tree.droit)) :
-        visitePrefixe(tree.droit)
+    if not(est_vide(tree.gauche)) :
+        visiteSuffixe(tree.gauche)
+    if not(est_vide(tree.droit)) :
+        visiteSuffixe(tree.droit)
     print(tree.valeur, end=" ")
 
 def visiteLargeur(tree):
-    f = []
-    f.insert(0, tree)
-    while f != []:
-        nd = f.pop()
+    f = []  #file de stockage des noeuds à visiter
+    f.insert(0, tree) #insert racine dans file
+    while f != []:  #tant que file pas vide
+        nd = f.pop()   #on defile le noeud courant
         print(nd.valeur, end=" - ")
-        if nd.gauche != None:
+        if nd.gauche != None:  #on ajoute le FG du noeud courant à la file
             f.insert(0, nd.gauche)
-        if nd.droit != None:
+        if nd.droit != None: #on ajoute le FD du noeud courant à la file
             f.insert(0, nd.droit)
 
 ### Fonctions  ABR
@@ -138,11 +141,46 @@ def appartient(x, tree) :
         return appartient(x, tree.droit)
     
 def minimum(tree):
-    if estVide(tree.gauche):
+    if est_vide(tree.gauche):
         return tree.valeur
     return minimum(tree.gauche)
 
 def maximum(tree):
-    if estVide(tree.droit):
+    if est_vide(tree.droit):
         return tree.valeur
     return maximum(tree.droit)
+
+def insertion(tree, elem):
+    if est_vide(tree):
+        return Node(elem, None, None)
+    else:
+        if elem < tree.valeur:
+            return Node(tree.valeur, insertion(tree.gauche, elem), tree.droit)
+        else:
+            return Node(tree.valeur, tree.gauche, insertion(tree.droit, elem))
+        
+
+def tri_abr(liste) :
+    def parcoursInfixe(tree, memo=[]) :        
+        if not(est_vide(tree.gauche)) :
+            memo = parcoursInfixe(tree.gauche, memo)
+        memo.append(tree.valeur)
+        if not(est_vide(tree.droit)) :
+            memo = parcoursInfixe(tree.droit, memo)
+        return memo
+    abr = None
+    for elem in liste:
+        abr = insertion(abr, elem)
+    return parcoursInfixe(abr)
+        
+        
+        
+l1 = [15,12,7,8,1,23,13]
+abrl1 = None
+for elem in l1:
+    abrl1 = insertion(abrl1, elem)
+    
+l2 = [7,1,23,13,15,8,12]
+abrl2 = None
+for elem in l2:
+    abrl2 = insertion(abrl2, elem)

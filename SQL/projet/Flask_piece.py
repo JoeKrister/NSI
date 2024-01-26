@@ -66,6 +66,8 @@ def piece(idP):  #fonction pour l'affichage unique de la pièce
 
 
 
+### Fonctions de tri ascendant
+
 
 @app.route('/pieceotheque',methods = ['POST'])
 def pieceotheque():  #fonction pour afficher toutes les pièces
@@ -75,9 +77,6 @@ def pieceotheque():  #fonction pour afficher toutes les pièces
     result = curseur.execute(rep).fetchall()
     connexion.close()   
     return render_template('pieceotheque.html', repetition = result)
-
-
-### Fonctions de tri ascendant
 
 
 @app.route('/tri_nombre' ,methods = ['POST'])
