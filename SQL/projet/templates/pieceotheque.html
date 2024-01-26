@@ -5,22 +5,13 @@
 {% block title %}Pieceotheque{% endblock %}
 
 {% block content %}
-<form>
-  <input
-    type="checkbox"
-    id="maCaseACocher"
-    onmouseover="maFonction()"
-    onclick="console.log('un évènement click a eu lieu')" />
-</form>
 
 
-
-
-
-	<input type="radio" onclick="document.location.href.inversement()" class="btn" value="trier par descendant" name="tri" value="descendant" checked="">
+	<input type="radio" onclick="inversement1()" id="desc" class="btn1" value="trier par descendant" name="tri" value="descendant" checked="">
 		<label for="tri_dsc">Descendant</label>
-	<input type="radio" onclick="document.location.href.inversement()"  class="btn" value="trier par ascendant" name="tri" value="ascendant" checked="">
+	<input type="radio" onclick="inversement2()" id="asc" class="btn2" value="trier par ascendant" name="tri" value="ascendant" checked="">
 		<label for="tri_asc">Ascendant</label>
+		
 
 	<li>	
 		<form action="{{ url_for('tri_nombre') }}" method="post">
@@ -105,7 +96,5 @@
 {% endfor %}
 
 <a href="{{ url_for('recherche') }}"> Recommencer</a>
-
-
 
 {% endblock %}

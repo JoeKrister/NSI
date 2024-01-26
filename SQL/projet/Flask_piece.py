@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import sqlite3
-from random import randint, choice, sample
+from random import sample
 
 app = Flask(__name__)
 
@@ -59,8 +59,7 @@ def resultats():
 def piece(idP):  #fonction pour l'affichage unique de la pièce
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
-    rep = "SELECT * FROM csv_piece WHERE idP=?;" #selectionne la ligne selon l'ip rentrée
-    result = curseur.execute(rep, (idP,)).fetchall()
+    result = curseur.execute("SELECT * FROM csv_piece WHERE idP=?;", (idP,)).fetchall() #selectionne la ligne selon l'ip rentrée
     connexion.close()
     return render_template('piece.html', repetition = result)
 
@@ -69,12 +68,11 @@ def piece(idP):  #fonction pour l'affichage unique de la pièce
 ### Fonctions de tri ascendant
 
 
-@app.route('/pieceotheque',methods = ['POST'])
+@app.route('/pieceotheque',methods = ['GET'])
 def pieceotheque():  #fonction pour afficher toutes les pièces
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
-    rep = f"""SELECT * FROM csv_piece;"""
-    result = curseur.execute(rep).fetchall()
+    result = curseur.execute("SELECT * FROM csv_piece;").fetchall()
     connexion.close()   
     return render_template('pieceotheque.html', repetition = result)
 
@@ -125,8 +123,7 @@ def tri_date(): #fonction pour afficher toutes les pièces selon leur date
     if request.method == 'POST':
         if 'tri_date' in request.form:
             date_piece = request.form['tri_date']
-            rep = f"""SELECT * FROM csv_piece ORDER BY date ASC;"""
-            result = curseur.execute(rep).fetchall()
+            result = curseur.execute("SELECT * FROM csv_piece ORDER BY date ASC;").fetchall()
             connexion.close()
             return render_template('tri_date.html', repetition = result)
         
@@ -236,7 +233,7 @@ def tri_idr(): #fonction pour afficher toutes les pièces selon leur indice de r
 
 
 
-@app.route('/pieceothequeD',methods = ['POST'])
+@app.route('/pieceothequeD',methods = ['GET'])
 def pieceothequeD():  #fonction pour afficher toutes les pièces de manière descendante
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
