@@ -3,7 +3,7 @@ btn1.addEventListener("click", inversement);
 
 function inversement1(){
 	document.getElementById("desc").click()
-	document.location.href="pieceothequeD"
+	document.location.href="pieceotheque_D"
 }
 
 function inversement2(){

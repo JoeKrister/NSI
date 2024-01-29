@@ -8,7 +8,16 @@
 
 
 {% for result in repetition %}
-<p> {{result[10]}} </p>
+
+{% if result is 'pas de donnée' %}
+    <p> {{result[10]}} </p>
+	<a href="{{ url_for('piece', idP=result[0]) }}">
+		<img class="piece" src="{{result[14]}}" title="{{result[6]}}">
+		<img class="piece" src="{{result[15]}}" title="{{result[6]}}">
+	</a>
+{% endif %}
+
+<p> {{result[10]}}mm </p>
 <a href="{{ url_for('piece', idP=result[0]) }}">
 	<img class="piece" src="{{result[14]}}" title="{{result[6]}}">
 	<img class="piece" src="{{result[15]}}" title="{{result[6]}}">

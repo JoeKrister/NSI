@@ -1,20 +1,20 @@
-{# app/templates/tri_dimension.html #}
+{# app/templates/tri_poids_D.html #}
 
 {% extends 'base.html' %}
 
-{% block title %}trié par dimension{% endblock %}
+{% block title %}trié par poids{% endblock %}
 
 {% block content %}
 
 
 {% for result in repetition %}
-<p> {{result[9]}}mm</p>
+<p> {{result[8]}} g </p>
 <a href="{{ url_for('piece', idP=result[0]) }}">
 	<img class="piece" src="{{result[14]}}" title="{{result[6]}}">
 	<img class="piece" src="{{result[15]}}" title="{{result[6]}}">
 </a>
 {% endfor %}
 
-<a href="{{ url_for('pieceotheque') }}"> Retour</a>
+<a href="{{ url_for('pieceotheque_D') }}"> Retour</a>
 
 {% endblock %}

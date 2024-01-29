@@ -7,7 +7,7 @@
 {% block content %}
 
 
-	<input type="radio" onclick="inversement1()" id="desc" class="btn1" value="trier par descendant" name="tri" value="descendant" checked="">
+	<input type="radio" onclick="inversement1()" id="desc" class="btn1" value="trier par descendant" name="tri" value="descendant" >
 		<label for="tri_dsc">Descendant</label>
 	<input type="radio" onclick="inversement2()" id="asc" class="btn2" value="trier par ascendant" name="tri" value="ascendant" checked="">
 		<label for="tri_asc">Ascendant</label>
@@ -89,8 +89,8 @@
 {% for result in repetition %}
 
 <a href="{{ url_for('piece', idP=result[0]) }}">
-	<img class="piece" src="{{result[14]}}">
-	<img class="piece" src="{{result[15]}}">
+	<img class="piece" src="{{result[1]}}">
+	<img class="piece" src="{{result[2]}}">
 </a>
 
 {% endfor %}
