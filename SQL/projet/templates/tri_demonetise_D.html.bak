@@ -6,6 +6,7 @@
 
 {% block content %}
 
+
 {% for result in repetition %}
 
 <p> {{result[12]}} </p>

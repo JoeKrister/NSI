@@ -37,13 +37,13 @@ def resultats():
             forme_piece = request.form['forme']
             demonetisee_piece = request.form['demo']
             indice_rarete_piece = request.form['idr']
-            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom_piece}%' AND nb_ex LIKE '%{nb_ex_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND type LIKE '%{typ_piece}%' AND date LIKE '%{date_piece}%'
-                        AND devise LIKE '%{devise_piece}%' AND composition LIKE '%{composition_piece}%' AND poids LIKE '%{poids_piece}%' AND dimension LIKE '%{dimension_piece}%' AND epaisseur LIKE '%{epaisseur_piece}%'
-                        AND forme LIKE '%{forme_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%' AND indice_de_rarete LIKE '%{indice_rarete_piece}%' ;"""
+            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom_piece}%' AND nb_ex = {nb_ex_piece} AND emetteur LIKE '%{emetteur_piece}%' AND type LIKE '%{typ_piece}%' AND date = {date_piece}
+                        AND devise LIKE '%{devise_piece}%' AND composition LIKE '%{composition_piece}%' AND poids = {poids_piece} AND dimension = {dimension_piece} AND epaisseur = {epaisseur_piece}
+                        AND forme LIKE '%{forme_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%' AND indice_de_rarete = {indice_rarete_piece} ;"""
             result = curseur.execute(rep).fetchall()
             connexion.close()
             if result == []:
-                return render_template('vide.html')
+                return render_template('pieceotheque.html')
             else:
                 return render_template('resultats.html', repetition = result)
         else:
@@ -79,10 +79,10 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
-        if 'tri_nb' in request.form:
+        if 'nb_ex' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex ASC;").fetchall()
             connexion.close()
-            return render_template('tri_nombre.html', repetition = result)
+            return render_template('tri.html', repetition = result)
         elif 'tri_nb_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex DESC;").fetchall()
             connexion.close()
@@ -90,7 +90,7 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
         elif 'tri_emet' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY emetteur ASC;").fetchall()
             connexion.close()
-            return render_template('tri_emetteur.html', repetition = result)
+            return render_template('tri.html', repetition = result)
         elif 'tri_typ' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY type ASC;").fetchall()
             connexion.close()
