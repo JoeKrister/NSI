@@ -48,9 +48,31 @@ class Node :
             self.gauche.to_image(graphe, "G")
         if not(self.droit is None) :
             self.droit.to_image(graphe, "D")
+            
+    def search(self, x):
+        if x == self.valeur:
+            return self
+        elif x < self.valeur:
+            if self.gauche is None:
+                return None
+            else:
+                return self.gauche.search(x)
+        else:
+            if self.droit is None:
+                return None
+            else:
+                return self.droit.search(x)
+            
+    def minimum(self):
+        if self.gauche is None:
+            return self
+        return self.gauche.minimum()
 
-        
-    
+    def maximum(self):
+        if self.droit is None:
+            return self
+        return self.droit.minimum()
+
 
 class ABR :
     def __init__ (self, racine = None) :
@@ -72,6 +94,10 @@ class ABR :
         self.racine.to_image(graphe)
         graphe.render(title, view = True, format='png')
 
+    def search(self, x):
+        if self.racine is None:
+            return None    
+        return self.racine.search(x)
     
     
     

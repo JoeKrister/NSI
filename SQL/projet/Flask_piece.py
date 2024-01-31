@@ -43,7 +43,7 @@ def resultats():
             result = curseur.execute(rep).fetchall()
             connexion.close()
             if result == []:
-                return render_template('pieceotheque.html')
+                return render_template('vide.html')
             else:
                 return render_template('resultats.html', repetition = result)
         else:
@@ -81,102 +81,54 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
     if request.method == 'POST':
         if 'nb_ex' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex ASC;").fetchall()
-            connexion.close()
-            return render_template('tri.html', repetition = result)
-        elif 'tri_nb_D' in request.form:
-            result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_nombre_D.html', repetition = result)
         elif 'tri_emet' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY emetteur ASC;").fetchall()
-            connexion.close()
-            return render_template('tri.html', repetition = result)
         elif 'tri_typ' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY type ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_type.html', repetition = result)
         elif 'tri_date' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY date ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_date.html', repetition = result)
         elif 'tri_dev' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY devise ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_devise.html', repetition = result)
         elif 'tri_comp' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY composition ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_composition.html', repetition = result)
         elif 'tri_pds' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY poids ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_poids.html', repetition = result)
         elif 'tri_dim' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY dimension ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_dimension.html', repetition = result)
         elif 'tri_ep' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY epaisseur ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_epaisseur.html', repetition = result)
         elif 'tri_forme' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY forme ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_forme.html', repetition = result)
         elif 'tri_demo' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY demonetisee ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_demonetise.html', repetition = result)
         elif 'tri_idr' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY indice_de_rarete ASC;").fetchall()
-            connexion.close()
-            return render_template('tri_idr.html', repetition = result)
+        elif 'tri_nb_D' in request.form:
+            result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex DESC;").fetchall()
         elif 'tri_emet_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY emetteur DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_emetteur_D.html', repetition = result)
         elif 'tri_typ_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY type DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_type_D.html', repetition = result)
         elif 'tri_date_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY date DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_date_D.html', repetition = result)
         elif 'tri_dev_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY devise DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_devise_D.html', repetition = result)        
         elif 'tri_idr_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY indice_de_rarete DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_idr_D.html', repetition = result)        
         elif 'tri_demo_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY demonetisee DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_demonetise_D.html', repetition = result)
         elif 'tri_forme_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY forme DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_forme_D.html', repetition = result)
         elif 'tri_ep_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY epaisseur DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_epaisseur_D.html', repetition = result)
         elif 'tri_dim_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY dimension DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_dimension_D.html', repetition = result)
         elif 'tri_pds_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY poids DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_poids_D.html', repetition = result)
         elif 'tri_comp_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY composition DESC;").fetchall()
-            connexion.close()
-            return render_template('tri_composition_D.html', repetition = result)
-        else:
-            return render_template('vide.html')        
+        connexion.close()
+        return render_template('tri.html', repetition = result)
     else:
         return render_template('vide.html')
         

@@ -7,7 +7,7 @@
 {% block content %}
 
 
-	<input type="radio" onclick="inversement()" id="desc" name="tri" value="descendant" checked />
+	<input type="radio" id="desc" name="tri" value="descendant" checked />
 		<label for="desc">Descendant</label>
 	<input type="radio" id="asc" name="tri" value="ascendant" checked="" />
 		<label for="asc">Ascendant</label>

@@ -15,3 +15,7 @@ h1 {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+
+.piece{
+	width : 100vw;
+}
