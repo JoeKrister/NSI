@@ -7,11 +7,11 @@
 {% block content %}
 
 
-	<input type="radio" id="desc" name="tri" value="descendant" checked onclick="inversement()" />
-		<label for="desc">Descendant</label>
-	<input type="radio" id="asc" name="tri" value="ascendant" checked="" />
-		<label for="asc">Ascendant</label>
-		
+	<input type="submit" id="desc" name="tri" value="descendant" checked onclick="inversement()" />
+
+	<input type="submit" id="asc" name="tri" value="ascendant" checked="" />
+
+
 
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
