@@ -36,12 +36,10 @@ def resultats():
             epaisseur_piece = request.form['ep']
             forme_piece = request.form['forme']
             demonetisee_piece = request.form['demo']
-            indice_rarete_piece = request.form['idr']
-#             if date == None:
-#                 date = 
-            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom_piece}%' AND nb_ex LIKE '{nb_ex_piece}' AND emetteur LIKE '%{emetteur_piece}%' AND type LIKE '%{typ_piece}%' AND date LIKE '{date_piece}'
-                        AND devise LIKE '%{devise_piece}%' AND composition LIKE '%{composition_piece}%' AND poids LIKE '{poids_piece}' AND dimension LIKE '{dimension_piece}' AND epaisseur LIKE '{epaisseur_piece}'
-                        AND forme LIKE '%{forme_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%' AND indice_de_rarete LIKE '{indice_rarete_piece}' ;"""
+            indice_rarete_piece = request.form['idr']             
+            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom_piece}%' AND nb_ex LIKE '%{nb_ex_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND type LIKE '%{typ_piece}%' AND date LIKE '%{date_piece}%'
+                        AND devise LIKE '%{devise_piece}%' AND composition LIKE '%{composition_piece}%' AND poids LIKE '%{poids_piece}%' AND dimension LIKE '%{dimension_piece}%' AND epaisseur LIKE '%{epaisseur_piece}%'
+                        AND forme LIKE '%{forme_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%' AND indice_de_rarete LIKE '%{indice_rarete_piece}%' ;"""
             result = curseur.execute(rep).fetchall()
             connexion.close()
             print(rep)

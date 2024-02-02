@@ -1,11 +1,13 @@
-var btn1 = document.querySelector(".btn1");
-btn1.addEventListener("click", inversement);
-
-//function inversement1(){
-//	document.getElementById("desc").click()
-//	document.location.href="pieceotheque_D"
-//}
+let chg_desc = document.getElementById('desc');
+chg_desc.addEventListener('click', inversement);
 
 function inversement(){
-	var el = document.querySelector("input[name+='_D']",);
+	boutons = document.getElementsByClassName('bouton_tri');
+	for (var i =0; i<boutons.length; i=i+1) {
+		boutons[i].name += "_D";
+	}
+	
 }
+
+
+ 

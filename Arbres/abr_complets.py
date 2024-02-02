@@ -72,6 +72,22 @@ class Node :
         if self.droit is None:
             return self
         return self.droit.minimum()
+    
+    def insert(self, x):
+        if x < self.valeur:
+            if self.gauche is None:
+                self.gauche = Node(x, parent = self)
+            else:
+                self.gauche.insert(x)
+        else:
+            if self.droit is None:
+                self.droit = Node(x, parent = self)
+            else:
+                self.droit.insert(x)
+            
+            
+    
+    
 
 
 class ABR :
@@ -99,6 +115,49 @@ class ABR :
             return None    
         return self.racine.search(x)
     
+    def minimum(self):
+        if self.racine is None:
+            return self
+        return self.racine.minimum()
+
+    def maximum(self):
+        if self.racine is None:
+            return self
+        return self.racine.minimum()
+    
+    def successeur(self,x):            
+        n = self.search(x)
+        if n is None :
+            return None
+        else :
+            if not(n.droit is None) :
+                return n.droit.minimum()
+            else :
+                ancetre = n.parent
+                while not(ancetre  is None) and (n == ancetre.droit) :
+                    n = ancetre
+                    ancetre = n.parent
+                return ancetre
+
+    def predecesseur(self,x):            
+        n = self.search(x)
+        if n is None :
+            return None
+        else :
+            if not(n.gauche is None) :
+                return n.gauche.maximum()
+            else :
+                ancetre = n.parent
+                while not(ancetre  is None) and (n == ancetre.gauche) :
+                    n = ancetre
+                    ancetre = n.parent
+                return ancetre
+            
+    def insert(self, x):
+        if self.racine is None:
+            self.racine = Node(x)
+        else:
+            self.racine.insert(x)
     
     
     
@@ -121,3 +180,8 @@ if __name__ == "__main__" :
     n8.parent = n2
 
     tree = ABR(n7)
+    
+    tree = ABR()
+    for elem in [15,12,7,8,1,23,13,82,46,54,3541,0,987,65465,65465132,5465654321,117,100000,177,117,177,171,177,117,177,177,117,117,177,171,71,5,15,12,7,8,1,23,13,82,46,54,3541,0,987,65465,65465132,5465654321,117,100000,177,117,177,171,177,117,177,177,117,117,177,171,71,5,15,12,7,8,1,23,13,82,46,54,3541,0,987,65465,65465132,5465654321,117,100000,177,117,177,171,177,117,177,177,117,117,177,171,71,515,12,7,8,1,23,13,82,46,54,3541,0,987,65465,65465132,5465654321,117,100000,177,117,177,171,177,117,177,177,117,117,177,171,71,5,15,12,7,8,1,23,13,82,46,54,3541,0,987,65465,65465132,5465654321,117,100000,177,117,177,171,177,117,177,177,117,117,177,171,71,5,15,12,7,8,1,23,13,82,46,54,3541,0,987,65465,65465132,5465654321,117,100000,177,117,177,171,177,117,177,177,117,117,177,171,71,5] :
+        tree.insert(elem)
+    tree.to_image()

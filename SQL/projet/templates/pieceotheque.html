@@ -11,80 +11,80 @@
 
 	<input type="submit" id="asc" name="tri" value="ascendant" checked="" />
 
+<div id="id_div">
 
-
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par nombre" name="nb_ex" />
+			<input class ="bouton_tri" type="submit" value="trier par nombre" name="nb_ex" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par émetteur" name="tri_emet" />
+			<input class ="bouton_tri" type="submit" value="trier par émetteur" name="tri_emet" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par type" name="tri_typ" />
+			<input class ="bouton_tri" type="submit" value="trier par type" name="tri_typ" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par date" name="tri_date" />
+			<input class ="bouton_tri" type="submit" value="trier par date" name="tri_date" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par devise monétaire" name="tri_dev" />
+			<input class ="bouton_tri" type="submit" value="trier par devise monétaire" name="tri_dev" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par composition" name="tri_comp" />
+			<input class ="bouton_tri" type="submit" value="trier par composition" name="tri_comp" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par poids" name="tri_pds" />
+			<input class ="bouton_tri" type="submit" value="trier par poids" name="tri_pds" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par dimension" name="tri_dim" />
+			<input class ="bouton_tri" type="submit" value="trier par dimension" name="tri_dim" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par épaisseur" name="tri_ep" />
+			<input class ="bouton_tri" type="submit" value="trier par épaisseur" name="tri_ep" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par forme" name="tri_forme" />
+			<input class ="bouton_tri" type="submit" value="trier par forme" name="tri_forme" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par démonétisation" name="tri_demo" />
+			<input class ="bouton_tri" type="submit" value="trier par démonétisation" name="tri_demo" />
 		</form>
 	</li>
 	
 	<li>	
 		<form action="{{ url_for('tri') }}" method="post">
-			<input type="submit" value="trier par indice de rareté Numista" name="tri_idr" />
+			<input class ="bouton_tri" type="submit" value="trier par indice de rareté Numista" name="tri_idr" />
 		</form>
 	</li>
-
+</div>
 
 {% for result in repetition %}
 
