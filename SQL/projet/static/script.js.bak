@@ -4,7 +4,8 @@ chg_desc.addEventListener('click', inversement);
 function inversement(){
 	boutons = document.getElementsByClassName('bouton_tri');
 	for (var i =0; i<boutons.length; i=i+1) {
-		boutons[i].name += "_D";
+		if (boutons[i].name.includes("_D")==false){
+		boutons[i].name += "_D";}
 	}
 	
 }
