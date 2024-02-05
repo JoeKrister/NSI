@@ -104,7 +104,8 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY demonetisee ASC;").fetchall()
         elif 'tri_idr' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY indice_de_rarete ASC;").fetchall()
-        elif 'tri_nb_D' in request.form:
+            ### Déscendant
+        elif 'nb_ex_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex DESC;").fetchall()
         elif 'tri_emet_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY emetteur DESC;").fetchall()
