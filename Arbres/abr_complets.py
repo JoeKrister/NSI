@@ -71,7 +71,7 @@ class Node :
     def maximum(self):
         if self.droit is None:
             return self
-        return self.droit.minimum()
+        return self.droit.maximum()
     
     def insert(self, x):
         if x < self.valeur:
@@ -123,7 +123,7 @@ class ABR :
     def maximum(self):
         if self.racine is None:
             return self
-        return self.racine.minimum()
+        return self.racine.maximum()
     
     def successeur(self,x):            
         n = self.search(x)
