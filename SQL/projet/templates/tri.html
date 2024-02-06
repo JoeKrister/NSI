@@ -7,7 +7,7 @@
 {% block content %}
 
 {% for result in repetition %}
-<p> {{result[nb_ex]}}</p>
+
 <a href="{{ url_for('piece', idP=result[0]) }}">
 	<img class="piece" src="{{result[14]}}" title="{{result[6]}}">
 	<img class="piece" src="{{result[15]}}" title="{{result[6]}}">

@@ -24,26 +24,26 @@ def resultats():
     curseur = connexion.cursor()
     if request.method == 'POST':       
         if 'nom' in request.form or 'nb_ex' in request.form or 'emet' in request.form or 'typ' in request.form or 'date' in request.form or 'dev' in request.form or 'comp' in request.form or 'pds' in request.form or 'diam' in request.form or 'ep' in request.form or 'forme' in request.form or 'demo' in request.form or 'idr' in request.form :
-            nom_piece = request.form['nom']
-            nb_ex_piece = request.form['nb_ex']
-            emetteur_piece = request.form['emet']
-            typ_piece = request.form['typ']            
-            date_piece = request.form['date']
-            devise_piece = request.form['dev']
-            composition_piece = request.form['comp']
-            poids_piece = request.form['pds']
-            dimension_piece = request.form['dim']    
-            epaisseur_piece = request.form['ep']
-            forme_piece = request.form['forme']
-            demonetisee_piece = request.form['demo']
-            indice_rarete_piece = request.form['idr']             
-            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom_piece}%' AND nb_ex LIKE '%{nb_ex_piece}%' AND emetteur LIKE '%{emetteur_piece}%' AND type LIKE '%{typ_piece}%' AND date LIKE '%{date_piece}%'
-                        AND devise LIKE '%{devise_piece}%' AND composition LIKE '%{composition_piece}%' AND poids LIKE '%{poids_piece}%' AND dimension LIKE '%{dimension_piece}%' AND epaisseur LIKE '%{epaisseur_piece}%'
-                        AND forme LIKE '%{forme_piece}%' AND demonetisee LIKE '%{demonetisee_piece}%' AND indice_de_rarete LIKE '%{indice_rarete_piece}%' ;"""
+            ### si une requete est faite, faire recherche dans la base de donnée
+            nom = request.form['nom']
+            nb_ex = request.form['nb_ex']
+            emet = request.form['emet']
+            typ = request.form['typ']            
+            date = request.form['date']
+            dev = request.form['dev']
+            comp = request.form['comp']
+            pds = request.form['pds']
+            dim = request.form['dim']    
+            ep = request.form['ep']
+            forme = request.form['forme']
+            demo = request.form['demo']
+            idr = request.form['idr']
+            rep = f"""SELECT * FROM csv_piece WHERE nom LIKE '%{nom}%' AND nb_ex LIKE '%{nb_ex}%' AND emetteur LIKE '%{emet}%' AND type LIKE '%{typ}%' AND date LIKE '%{date}%'
+                        AND devise LIKE '%{dev}%' AND composition LIKE '%{comp}%' AND poids LIKE '%{pds}%' AND dimension LIKE '%{dim}%' AND epaisseur LIKE '%{ep}%'
+                        AND forme LIKE '%{forme}%' AND demonetisee LIKE '%{demo}%' AND indice_de_rarete LIKE '%{idr}%' ;"""
             result = curseur.execute(rep).fetchall()
             connexion.close()
-            print(rep)
-            if result == []:
+            if result == []:### si que des requetes vides, afficher page vide
                 return render_template('vide.html')
             else:
                 return render_template('resultats.html', repetition = result)
@@ -70,7 +70,7 @@ def piece(idP):  #fonction pour l'affichage unique de la pièce
 def pieceotheque():  #fonction pour afficher toutes les pièces
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
-    result = curseur.execute("SELECT idP, avers, revers FROM csv_piece;").fetchall()
+    result = curseur.execute("SELECT idP, avers, revers FROM csv_piece;").fetchall() #selectionne l'ip, l'image de l'avers et de l'envers
     connexion.close()   
     return render_template('pieceotheque.html', repetition = result)
 
@@ -80,6 +80,7 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
+        ### Ascendant
         if 'nb_ex' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex ASC;").fetchall()
         elif 'tri_emet' in request.form:

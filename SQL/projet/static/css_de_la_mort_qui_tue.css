@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
 body {
-    background-color: #c7c7c7;
+    background-color: #FABC20;
     font-family: Lato;
 }
 
@@ -16,6 +16,10 @@ h1 {
     padding-bottom: 50px;
 }
 
+
 .piece{
 	width : 9vw;
 }
+
+
+

@@ -33,7 +33,7 @@
 	</li>
 	<li>
 		<label for="date">Date:</label>
-		<input type="number"  name="date"/>
+		<input type="number"  name="date" value="0"/>
 	</li>
 	<li>
 		<label for="dev">Devise:</label>
