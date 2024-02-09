@@ -6,6 +6,7 @@
 
 {% block content %}
 
+
 <input type="radio" id="desc" name="tri" value="descendant" checked onclick="inversement1()" />
 	<label for="oui">Tri décroissant</label>
 <input type="radio" id="asc" name="tri" value="ascendant" checked=""  onclick="inversement2()"/>

@@ -20,13 +20,13 @@
 	</li>
 	<li>
 		<label for="emet">Emetteur:</label>
-		<input type="text"  name="emet" />
+		<input type="text"  name="emet" value="" />
 	</li>
 	<li>
-		<label for="type">Type:</label>
+		<label for="typ">Type:</label>
 		<select name="typ" >
-				<option > </option> <!-- option vide pour quand la personne ne sais pas-->
-				<option value="Pièce courante"> Pièce courante</option>
+				<option value="">--- selectionnez  --- </option> <!-- option vide pour quand la personne ne sais pas-->
+				<option value="Piece courante"> Pièce courante</option>
                 <option value="Essaie"> Essaie</option>
 			
 		</select>
@@ -37,11 +37,11 @@
 	</li>
 	<li>
 		<label for="dev">Devise:</label>
-		<input type="text"  name="dev" />
+		<input type="text"  name="dev" value=""/>
 	</li>
 	<li>
 		<label for="comp">Composition:</label>
-		<input type="text"  name="comp" />
+		<input type="text"  name="comp" value=""/>
 	</li>
 	<li>
 		<label for="pds">Poids (g):</label>
@@ -57,13 +57,13 @@
 	</li>
 	<li>
 		<label for="forme">Forme:</label>
-		<input type="text"  name="forme" />
+		<input type="text"  name="forme" value=""/>
 	</li>
 	<li>
 		<label for="demo">Démonétisée:</label>
-		<input type="radio" id="oui" name="demo" value="oui" checked/>
+		<input type="radio" id="oui" name="demo" value="oui" />
 			<label for="oui">Oui</label>
-		<input type="radio" id="non" name="demo" value="non" checked/>
+		<input type="radio" id="non" name="demo" value="non" />
 			<label for="non">Non</label>
 		<input type="radio" id="nsp" name="demo" value=""  checked/>
 			<label for="nsp">Ne sais pas</label>
