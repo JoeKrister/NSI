@@ -16,7 +16,7 @@
 		<form action="{{ url_for('tri') }}" method="post">
 			<input class ="bouton_tri" type="submit" value="trier par nombre" name="nb_ex" />
 			<input class ="bouton_tri" type="submit" value="trier par émetteur" name="tri_emet" />
-			<input class ="bouton_tri" type="submit" value="trier par type" name="tri_typ" />
+			<input class ="bouton_tri" type="submit" value="trier par type" name="tri_type_p" />
 			<input class ="bouton_tri" type="submit" value="trier par date" name="tri_date" />
 			<input class ="bouton_tri" type="submit" value="trier par devise monétaire" name="tri_dev" />
 			<input class ="bouton_tri" type="submit" value="trier par composition" name="tri_comp" />

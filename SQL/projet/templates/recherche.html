@@ -78,11 +78,9 @@
 </ul>
 
 
-
-<form action="{{ url_for('pieceotheque') }}" method="get">
-	<input type="submit" value="toutes les pièces">
-</form>
-
+<button class="glow-on-hover" type="button" >
+	<a href="{{ url_for('pieceotheque') }}"> Toutes mes pièces </a>  
+</button>
 
 {% for result in repetition %}
    <a href="{{ url_for('piece', idP=result[0]) }}">

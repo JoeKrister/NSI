@@ -106,11 +106,11 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
         if 'nb_ex' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex ASC;").fetchall()
             tri = "Tri par nombre d'exemplaire croissant."
-            cle = ("Nombre d'exemplaire",2)
+            cle = ("Nombre(s) d'exemplaire(s)",2)
         elif 'tri_emet' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY emetteur ASC;").fetchall()
             tri = "Tri par émetteur croissant."
-            cle = ("Emetteur",3)
+            cle = ("Émetteur",3)
         elif 'tri_type_p' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY type_p ASC;").fetchall()
             tri = "Tri par type croissant."
@@ -134,11 +134,11 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
         elif 'tri_dim' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY dimension ASC;").fetchall()
             tri = "Tri par dimension croissante"
-            cle = ("Dimension", 9)
+            cle = ("Dimension(mm)", 9)
         elif 'tri_ep' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY epaisseur ASC;").fetchall()
             tri = "Tri par épaisseur croissante"
-            cle = ("Épaisseur", 10)
+            cle = ("Épaisseur(mm)", 10)
         elif 'tri_forme' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY forme ASC;").fetchall()
             tri = "Tri par forme croissante"
@@ -154,30 +154,52 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
             ### Déscendant
         elif 'nb_ex_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex DESC;").fetchall()
-            tri = "Tri par nombre d'exemplaire croissant."
-            cle = ("Nombre d'exemplaire",2)
+            tri = "Tri par nombre d'exemplaire décroissant."
+            cle = ("Nombre(s) d'exemplaire(s)",2)
         elif 'tri_emet_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY emetteur DESC;").fetchall()
-        elif 'tri_typ_D' in request.form:
+            tri = "Tri par émetteur décroissant."
+            cle = ("Émetteur",3)
+        elif 'tri_type_p_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY type_p DESC;").fetchall()
+            tri = "Tri par type décroissant."
+            cle = ("Type",4)
         elif 'tri_date_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY date DESC;").fetchall()
+            tri = "Tri par année décroissante."
+            cle = ("Année",5)
         elif 'tri_dev_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY devise DESC;").fetchall()
-        elif 'tri_idr_D' in request.form:
-            result = curseur.execute("SELECT * FROM csv_piece ORDER BY indice_de_rarete DESC;").fetchall()
-        elif 'tri_demo_D' in request.form:
-            result = curseur.execute("SELECT * FROM csv_piece ORDER BY demonetisee DESC;").fetchall()
-        elif 'tri_forme_D' in request.form:
-            result = curseur.execute("SELECT * FROM csv_piece ORDER BY forme DESC;").fetchall()
-        elif 'tri_ep_D' in request.form:
-            result = curseur.execute("SELECT * FROM csv_piece ORDER BY epaisseur DESC;").fetchall()
-        elif 'tri_dim_D' in request.form:
-            result = curseur.execute("SELECT * FROM csv_piece ORDER BY dimension DESC;").fetchall()
-        elif 'tri_pds_D' in request.form:
-            result = curseur.execute("SELECT * FROM csv_piece ORDER BY poids DESC;").fetchall()
+            tri = "Tri par devise décroissante."
+            cle = ("Devise",6)
         elif 'tri_comp_D' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY composition DESC;").fetchall()
+            tri = "Tri par composition décroissante."
+            cle = ("Composition",7)
+        elif 'tri_pds_D' in request.form:
+            result = curseur.execute("SELECT * FROM csv_piece ORDER BY poids DESC;").fetchall()
+            tri = "Tri par poids décroissant."
+            cle = ("Poids(g)",8)
+        elif 'tri_dim_D' in request.form:
+            result = curseur.execute("SELECT * FROM csv_piece ORDER BY dimension DESC;").fetchall()
+            tri = "Tri par dimension décroissante."
+            cle = ("Dimension(mm)",9)
+        elif 'tri_ep_D' in request.form:
+            result = curseur.execute("SELECT * FROM csv_piece ORDER BY epaisseur DESC;").fetchall()
+            tri = "Tri par épaisseur décroissante."
+            cle = ("Épaisseur(mm)",10)
+        elif 'tri_forme_D' in request.form:
+            result = curseur.execute("SELECT * FROM csv_piece ORDER BY forme DESC;").fetchall()
+            tri = "Tri par forme décroissante."
+            cle = ("Forme",11)
+        elif 'tri_demo_D' in request.form:
+            result = curseur.execute("SELECT * FROM csv_piece ORDER BY demonetisee DESC;").fetchall()
+            tri = "Tri par démonétisation décroissante."
+            cle = ("Démonétisation",12)
+        elif 'tri_idr_D' in request.form:
+            result = curseur.execute("SELECT * FROM csv_piece ORDER BY indice_de_rarete DESC;").fetchall()
+            tri = "Tri par indice de rareté décroissant."
+            cle = ("Indice de rareté",13)
         connexion.close()
         return render_template('tri.html', repetition = result, tri = tri, cle=cle)
     else:
