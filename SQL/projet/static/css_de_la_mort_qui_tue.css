@@ -1,9 +1,8 @@
-/** app/static/css/style.css **/
-
-
 body {
     background-color: #FABC20;
+	
 }
+
 
 h1 {
     width: 70%;
@@ -14,12 +13,19 @@ h1 {
     padding-bottom: 50px;
 }
 
-.echantillon{
-	background-color: red;
+.piece:hover {
+    width: 12vw;
 }
 
 .piece{
 	width : 9vw;
+}
+
+.piece_result{
+	width : 30vw;
+	border-style: inset;
+	border-width: 8px;
+	float: right
 }
 
 .glow-on-hover {

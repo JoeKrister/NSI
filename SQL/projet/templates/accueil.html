@@ -1,0 +1,15 @@
+{# app/templates/accueil.html #}
+
+{% block title %}Accueil{% endblock %}
+
+{% block links %} <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_accueil.css') }}"> {%endblock%}
+
+{% block content %}
+<div  class="rotating" >
+<img id="image" src="{{ url_for('static', filename='img_piece.jpg') }}">
+</div>
+<p>
+	accueil texte 
+
+</p>
+{% endblock %}
