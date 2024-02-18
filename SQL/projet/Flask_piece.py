@@ -32,7 +32,7 @@ def resultats():
     curseur = connexion.cursor()
     if request.method == 'POST':       
         if 'nom' in request.form or 'nb_ex' in request.form or 'emet' in request.form or 'typ' in request.form or 'date' in request.form or 'dev' in request.form or 'comp' in request.form or 'pds' in request.form or 'diam' in request.form or 'ep' in request.form or 'forme' in request.form or 'demo' in request.form or 'idr' in request.form :
-            ### si une requete est faite, faire recherche dans la base de donnée
+            # si une requete est faite, faire recherche dans la base de donnée
             nb_ex = request.form['nb_ex']
             rep = f"""SELECT * FROM csv_piece WHERE nb_ex = {nb_ex}"""
             nom = request.form['nom']

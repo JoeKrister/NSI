@@ -20,3 +20,8 @@ function inversement2(){
 	}
 }
 
+
+setTimeout(() => {
+	document.querySelector('.preloader').style.display = "none"	
+}, 2000);
+

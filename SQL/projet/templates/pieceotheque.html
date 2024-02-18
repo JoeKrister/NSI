@@ -6,6 +6,10 @@
 
 {% block content %}
 
+<div class="preloader">
+	<h1>Numismaticodreo</h1> 
+	<span class="loader"></span>
+</div>
 
 <input type="radio" id="desc" name="tri" value="descendant" checked onclick="inversement1()" />
 	<label for="oui">Tri décroissant</label>
@@ -32,12 +36,12 @@
 {% for result in repetition %}
 
 <a href="{{ url_for('piece', idP=result[0]) }}">
-	<img class="piece" src="{{result[1]}}">
-	<img class="piece" src="{{result[2]}}">
+	<img class="piece" src="{{result[1]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}">
+	<img class="piece" src="{{result[2]}}" title="{{result[2]}}" alt="pièce n°{{result[0]}}">
 </a>
 
 {% endfor %}
 
-<a href="{{ url_for('recherche') }}"> Recommencer</a>
+<a href="{{ url_for('recherche') }}"> Faire une recherche précise.</a>
 
 {% endblock %}

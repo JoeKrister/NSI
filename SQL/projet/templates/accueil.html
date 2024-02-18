@@ -5,11 +5,9 @@
 {% block links %} <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_accueil.css') }}"> {%endblock%}
 
 {% block content %}
-<div  class="rotating" >
-<img id="image" src="{{ url_for('static', filename='img_piece.jpg') }}">
-</div>
-<p>
-	accueil texte 
 
+<p>
+	<a href="{{ url_for('pieceotheque') }}"> Toutes mes pièces.</a>
+	<a href="{{ url_for('recherche') }}"> Faire une recherche.</a>  
 </p>
 {% endblock %}
