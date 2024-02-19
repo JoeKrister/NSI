@@ -4,3 +4,11 @@ body{
     height: 100vh;
 	width:50%;
 }
+
+a{
+	border: dashed;
+	border-width: 2px 4px;
+	border-radius: 40px;
+	background-color: white;
+	width: 50%;
+}
