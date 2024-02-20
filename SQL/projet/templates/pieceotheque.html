@@ -33,6 +33,7 @@
 		</form>
 </div>
 
+
 {% for result in repetition %}
 
 <a href="{{ url_for('piece', idP=result[0]) }}">
@@ -41,6 +42,7 @@
 </a>
 
 {% endfor %}
+
 
 <a href="{{ url_for('recherche') }}"> Faire une recherche précise.</a>
 

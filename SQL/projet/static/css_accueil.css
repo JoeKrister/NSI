@@ -14,3 +14,8 @@ h1{
 	border-radius: 2em;
 	margin: 10vw 0vw 0vw 25vw;
 }
+
+a{
+	color: white;
+	text-decoration: none;
+}

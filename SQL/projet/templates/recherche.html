@@ -7,8 +7,12 @@
 {% block content %}
 
 <h1>Les pièces de Dreo.</h1>
-<p> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. </p>
+<h2> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. </h2>
 
+<h2>
+<a href="{{ url_for('accueil') }}"> Recommencez alors !</a>
+</h2>
+	
 
 <form action="{{ url_for('resultats') }}" method="post">
 	<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom">
@@ -70,7 +74,7 @@
 			<label for="nsp">Ne sais pas</label>
 	</li>
 	<li>
-		<label for="idr">Indice de rareté:</label>
+		<label for="idr">Indice de rareté Numista (0 correspond au plus courant, 100 est le plus rare):</label>
 		<input type="number"  name="idr" min="0" max="100" value="0" />
 	</li>
 	
@@ -91,6 +95,6 @@
 {% endfor %}
 </div>
 
-<footer>Attention, les recherches que vous faîtes correspondent à ce qui ressemble à ce que vous avez écrit; pour plus de précision dans vos recherches merci de les faires grâces aux recherches spécifiques.</footer>
+<footer>Le résultat de la recherche correspond à ce qui a été entré, pour plus de précision, merci de remplir plus de renseignements.</footer>
 
 {% endblock %}

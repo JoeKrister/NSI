@@ -16,6 +16,16 @@ h1 {
 	border-radius: 2em;
 }
 
+/* CSS pour les recherches dans la page recherche */
+
+#name{
+	height: 20px;
+	width: 200px;	
+}
+
+
+/* CSS pour les résultats dans page piece.html */
+
 #liste{
 	background-color: white;
 	border: dashed red;
@@ -25,14 +35,19 @@ h1 {
 	margin: 5vw 10vw 10vw 0vw;
 }
 
+
 /* CCS pour l'affichage des pièces */
 
 #piece_pieceotheque:hover {
-    width: 12vw;
+    width: 15vw;
 }
 
 #piece_pieceotheque{
-	width : 9vw;
+	width : 10vw;
+	border-style: inset;
+	border-width: 8px;
+	border-color: #1F1006;
+	margin: 1vw 0vw 1vw 1vw;
 	
 }
 
@@ -43,7 +58,7 @@ h1 {
 	border-color: #1F1006;
 }
 
-#piece_piece{
+#placement_piece{
   margin: -35vw 0vw 0vw 25vw;
 }
 
@@ -52,6 +67,9 @@ h1 {
 	border-style: inset;
 	border-width: 8px;
 }
+
+
+
 
 /* CCS pour le bouton multicolore */
 
