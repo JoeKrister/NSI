@@ -5,8 +5,10 @@
 {% block links %} <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_accueil.css') }}"> {%endblock%}
 
 {% block content %}
-
+<h1>
 <a href="{{ url_for('pieceotheque') }}"> Toutes mes pièces.</a>
+</h1>
+<h1>
 <a href="{{ url_for('recherche') }}"> Faire une recherche.</a>  
-
+</h1>
 {% endblock %}

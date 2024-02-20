@@ -7,31 +7,35 @@
 {% block content %}
 
 {% for result in repetition %}
+ 
+<div>
+	<h1>{{result[1]}}</h1>
 
-<h1>{{result[1]}}</h1>
-
-<p>
-	<ul>
-		<li>Nom : {{result[1]}}</li>
-		<li>Nombre d'exemplaires : {{result[2]}}</li>
-		<li>Type : {{result[4]}}</li>
-		<li>Pays émetteur : {{result[3]}}</li>
-		<li>Date de création : {{result[5]}}</li>
-		<li>Devise monétaire : {{result[6]}}</li>
-		<li>Composition : {{result[7]}}</li>
-		<li>Poids (en gramme) : {{result[8]}}</li>
-		<li>Épaisseur (en mm) : {{result[10]}}</li>
-		<li>Forme : {{result[11]}}</li>
-		<li>Dimension (en mm) : {{result[9]}}</li>
-		<li>Démonétisée : {{result[12]}}</li>
-		<li>Indice de rareté numista : {{result[13]}}</li>
-	</ul>
-</p>
-
-<p>
-	<img class="piece_result" src="{{result[14]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}">
-	<img class="piece_result" src="{{result[15]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}">
-</p>
+	<p>
+		<ul id="liste">
+			<li>Nom : {{result[1]}}</li>
+			<li>Nombre d'exemplaires : {{result[2]}}</li>
+			<li>Type : {{result[4]}}</li>
+			<li>Pays émetteur : {{result[3]}}</li>
+			<li>Date de création : {{result[5]}}</li>
+			<li>Devise monétaire : {{result[6]}}</li>
+			<li>Composition : {{result[7]}}</li>
+			<li>Poids (en gramme) : {{result[8]}}</li>
+			<li>Épaisseur (en mm) : {{result[10]}}</li>
+			<li>Forme : {{result[11]}}</li>
+			<li>Dimension (en mm) : {{result[9]}}</li>
+			<li>Démonétisée : {{result[12]}}</li>
+			<li>Indice de rareté numista : {{result[13]}}</li>
+		</ul>
+	</p>
+</div>
+	
+<div id="piece_piece">
+	<p>
+		<img class="piece" src="{{result[14]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}" >
+		<img class="piece" src="{{result[15]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}" >
+	</p>
+</div>
 	
 {% endfor %}
 

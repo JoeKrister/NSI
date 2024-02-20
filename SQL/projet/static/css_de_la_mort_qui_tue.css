@@ -1,12 +1,14 @@
 body {
-    background-color: #FABC20;
+    background-color: #C3D8F7;
+	font: "fantasy";
 }
 
 
 h1 {
     width: 70%;
     margin: auto;
-    background-color: grey;
+    background-color: #1D041F;
+	color: white;
     text-align: center;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -14,26 +16,41 @@ h1 {
 	border-radius: 2em;
 }
 
+#liste{
+	background-color: white;
+	border: dashed red;
+	border-width: 8px;
+	height: 20vw;
+	width: 20vw;
+	margin: 5vw 10vw 10vw 0vw;
+}
+
 /* CCS pour l'affichage des pièces */
 
-.piece:hover {
+#piece_pieceotheque:hover {
     width: 12vw;
 }
 
-.piece{
+#piece_pieceotheque{
 	width : 9vw;
+	
 }
 
-.piece_recherche{
+#piece_recherche{
 	width : 15vw;
-}
-
-
-.piece_result{
-	width : 30vw;
 	border-style: inset;
 	border-width: 8px;
-	float: right;
+	border-color: #1F1006;
+}
+
+#piece_piece{
+  margin: -35vw 0vw 0vw 25vw;
+}
+
+.piece{
+	width: 30vw;
+	border-style: inset;
+	border-width: 8px;
 }
 
 /* CCS pour le bouton multicolore */

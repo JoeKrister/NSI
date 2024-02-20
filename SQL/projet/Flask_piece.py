@@ -8,9 +8,6 @@ connexion = sqlite3.connect("collection_21p.db")
 
 @app.route('/')
 def accueil():
-    connexion = sqlite3.connect("collection_21p.db")
-    curseur = connexion.cursor()
-    connexion.close()
     return render_template('accueil.html')
     
 
