@@ -220,6 +220,13 @@ def pieceotheque_D():  #fonction pour afficher toutes les pièces de manière de
     return render_template('pieceotheque_D.html', repetition = result)
 
 
+# /!\ en test, pas fini !!
+@app.route('/enregistrement',methods = ['GET'])
+def enregistrement():  #fonction pour pouvoir enregistrer des pièces
+    connexion = sqlite3.connect("collection_21p.db")
+    curseur = connexion.cursor()
+    connexion.close()   
+    return render_template('enregistrement.html')
         
 
 connexion.close()

@@ -5,9 +5,14 @@
 {% block title %}Numismatiquodreo{% endblock %}
 
 {% block content %}
-<h1>Les pièces de Dreo.</h1>
-<p> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. </p>
 
+<h1>Les pièces de Dreo.</h1>
+<h2> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. </h2>
+
+<h2>
+<a href="{{ url_for('accueil') }}"> Recommencez alors !</a>
+</h2>
+	
 
 <form action="{{ url_for('resultats') }}" method="post">
 	<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom">
@@ -69,7 +74,7 @@
 			<label for="nsp">Ne sais pas</label>
 	</li>
 	<li>
-		<label for="idr">Indice de rareté:</label>
+		<label for="idr">Indice de rareté Numista (0 correspond au plus courant, 100 est le plus rare):</label>
 		<input type="number"  name="idr" min="0" max="100" value="0" />
 	</li>
 	
@@ -79,14 +84,17 @@
 
 
 <button class="glow-on-hover" type="button" >
-	<a href="{{ url_for('pieceotheque') }}"> Toutes mes pièces </a>  
+	<a href="{{ url_for('pieceotheque') }}"> Toutes mes pièces </a>
 </button>
 
+<div>
 {% for result in repetition %}
-   <a href="{{ url_for('piece', idP=result[0]) }}">
-	<img class="piece, echantillon" src="{{ result[1] }}" alt="Avers">
-   </a>
+<a href="{{ url_for('piece', idP=result[0]) }}">
+	<img id="piece_recherche" src="{{ result[1] }}" alt="Avers de la pièce n°{{result[0]}}" title="{{result[1]}}">
+</a>
 {% endfor %}
+</div>
 
+<footer>Le résultat de la recherche correspond à ce qui a été entré, pour plus de précision, merci de remplir plus de renseignements.</footer>
 
 {% endblock %}
