@@ -6,12 +6,13 @@
 
 {% block content %}
 
+<!-- div pour mon écran de chargement -->
 <div class="preloader">
 	<h1>Numismaticodreo</h1> 
 	<span class="loader"></span>
 </div>
 
-
+<!-- div pour les 2 boutons radios pour les tri en croissant ou décroissant -->
 <div id="bouton_pieceotheque">
 <input type="radio" id="desc" name="tri" value="descendant" checked onclick="inversement1()" />
 	<label for="oui">Tri décroissant</label>
@@ -19,7 +20,7 @@
 	<label for="oui">Tri croissant</label>
 </div>	
 
-	
+<!-- div pour les autres boutons pour les tris -->
 <div>
 		<form action="{{ url_for('tri') }}" method="post">
 			<input id="bouton_pieceotheque" class ="bouton_tri" type="submit" value="trier par nombre" name="nb_ex" />
@@ -38,13 +39,12 @@
 </div>
 
 
+<!-- répétition pour afficher toutes les pièces (leur avers et revers) -->
 {% for result in repetition %}
-
 <a href="{{ url_for('piece', idP=result[0]) }}">
 	<img id="piece_pieceotheque" src="{{result[1]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}">
 	<img id="piece_pieceotheque" src="{{result[2]}}" title="{{result[2]}}" alt="pièce n°{{result[0]}}">
 </a>
-
 {% endfor %}
 
 

@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 connexion = sqlite3.connect("collection_21p.db")
 
-@app.route('/accueil')
-def accueil():
+@app.route('/')
+def accueil(): #affiche simplemennt la page d'accueil
     return render_template('accueil.html')
     
 
@@ -57,7 +57,7 @@ def resultats():
                 rep += f" AND indice_de_rarete LIKE '%{request.form['idr']}%'"
             result = curseur.execute(rep).fetchall()
             connexion.close()
-            if result == []:### si il n'y a que des requetes vides, afficher page vide
+            if result == []:# si il n'y a que des requetes vides, afficher page vide
                 return render_template('vide.html')
             else:
                 return render_template('resultats.html', repetition = result)
@@ -95,10 +95,10 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
     curseur = connexion.cursor()
     if request.method == 'POST':
         ### Ascendant
-        if 'nb_ex' in request.form:
+        if 'nb_ex' in request.form: #si il y a un request.form de fait, ça tri dans la base de donnée selon le request.form utilisé
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY nb_ex ASC;").fetchall()
-            tri = "Tri par nombre d'exemplaire croissant."
-            cle = ("Nombre(s) d'exemplaire(s)",2)
+            tri = "Tri par nombre d'exemplaire croissant." 
+            cle = ("Nombre(s) d'exemplaire(s)",2) #le numéro correspond à la colonne dans la base de donnée
         elif 'tri_emet' in request.form:
             result = curseur.execute("SELECT * FROM csv_piece ORDER BY emetteur ASC;").fetchall()
             tri = "Tri par émetteur croissant."
@@ -196,15 +196,7 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
         return render_template('tri.html', repetition = result, tri = tri, cle=cle)
     else:
         return render_template('vide.html')
-        
-        
-@app.route('/pieceotheque_D',methods = ['GET'])
-def pieceotheque_D():  #fonction pour afficher toutes les pièces de manière descendante
-    connexion = sqlite3.connect("collection_21p.db")
-    curseur = connexion.cursor()
-    result = curseur.execute("SELECT idP, avers, revers FROM csv_piece;").fetchall()
-    connexion.close()   
-    return render_template('pieceotheque_D.html', repetition = result)
+
 
 
 # /!\ en test, pas fini !!

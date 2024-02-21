@@ -20,9 +20,15 @@ label {
 }
 
 input{
-	   height: 20px;
+	height: 20px;
     font-size: 20px;
 }
+
+select{
+	height: 20px;
+    font-size: 20px;
+}
+
 
 /* CSS pour les boutons et les pièces dans la page pieceotheque.html */
 
@@ -49,6 +55,10 @@ input{
 
 
 /* CSS pour les recherches et les pièces dans la page recherche.html */
+
+#bouton_accueil{
+	margin: -20vw 0vw 1vw -1vw;	
+}
 
 #name{
 	height: 20px;
@@ -78,20 +88,33 @@ input{
   margin: -35vw 0vw 0vw 25vw;
 }
 
-
-/* CCS pour l'affichage des pièces */
-
-
-.piece{
+#piece_piece{
 	width: 20vw;
 	border-style: inset;
 	border-width: 8px;
 }
 
+
+/* CCS pour l'affichage de la page vide.html */
+
+#no_found{
+	font-size: 50px;
+	text-align: center;
+}
+
+/* CCS pour l'affichage des pièces de la page tri.html */
+
 #piece_tri{
-	width: 20vw;
+	width: 15vw;
 	border-style: inset;
 	border-width: 8px;
+	border-color: #811453;
+}
+
+#lien_tri{
+	text-decoration: none;
+	font-size: 22px;
+	color: black;
 }
 
 /* CCS pour le bouton multicolore */
@@ -111,7 +134,7 @@ input{
 
 .glow-on-hover:before {
     content: '';
-    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000); /* Fond multicolor */
     position: absolute;
     top: -2px;
     left:-2px;
@@ -180,6 +203,7 @@ input{
 	flex-direction: column;
 }
 
+/* h1 de l'écran qui charge */
 .preloader h1{
 	background-color: red;
 	color: white;
@@ -189,6 +213,7 @@ input{
 	border: 6px solid white;	
 }
 
+/* positionne l'animation */
 .preloader.loader{
 	display: block;
 	width: 64px;
@@ -197,14 +222,12 @@ input{
 }
 
 .preloader.loader::before{
-	content: '';
-	width: 64px;
-	height: 64px;
-	position: absolute;
-	border: 6px solid white;
-	border-color: white transparent white transparent;
+	width: 50px;
+	aspect-ratio: 1;
 	border-radius: 50%;
-	animation: loader 1s infinite ease-in-out;
+	border: 8px solid;
+	border-color: #000 #0000;
+	animation: l1 1s infinite;
 }
 
 @keyframes loader {
@@ -215,4 +238,31 @@ input{
 	100%{
 		transform: rotate(360deg);
 	}	
+}
+
+/* fond blanc de l'animation */
+.loader {
+  display: inline-grid;
+  padding: 5px;
+  background: #fff;
+  filter: blur(4px) contrast(12);
+  margin: -5vw 0vw 0vw 0vw;
+}
+
+/* animation quand ça charge */
+.loader:before {
+  content: "";
+  height: 40px;
+  aspect-ratio: 3;
+  --c: #0000 64%,#000 66% 98%,#0000 101%;
+  background:
+    radial-gradient(35% 146% at 50% 159%,var(--c)) 0 0,
+    radial-gradient(35% 146% at 50% -59%,var(--c)) 100% 100%;
+  background-size: calc(200%/3) 50%;
+  background-repeat: repeat-x;
+  animation: l11 .8s infinite linear;
+}
+
+@keyframes l11{
+  to {background-position: -200% 0,-100% 100%}
 }

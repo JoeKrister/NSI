@@ -7,17 +7,19 @@
 {% block content %}
 
 <h1>Les pièces de Dreo.</h1>
+
+<!-- bouton pour retourner à l'accueil -->
+<a href="{{ url_for('accueil') }}"> 
+<img src="static\maison dollar.png" id="bouton_accueil">
+</a> 
+
 <h2> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. </h2>
 
-<h2>
-<a href="{{ url_for('accueil') }}"> 
-<img src="static\WIP.png">
-</a> 
-</h2>
-	
+<!-- bouton pour demander le nom de la pièce voulu -->
 <form action="{{ url_for('resultats') }}" method="post">
 <input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom">
 
+<!-- Recherches plus précises utilisant la condition WHERE en sql(comme celui au dessus) -->
 <h3>Recherche spécifique: </h3>
 <ul>	
 	<li>
@@ -83,11 +85,12 @@
 	</form>
 </ul>
 
-
+<!-- bouton multicolor, ne venant pas de moi et copié collé mais amusant -->
 <button class="glow-on-hover" type="button" >
 	<a href="{{ url_for('pieceotheque') }}"> Toutes mes pièces </a>
 </button>
 
+<!-- div proposant 5 images(avers) aléatoire venant toujours de ma base de donée -->
 <div>
 {% for result in repetition %}
 <a href="{{ url_for('piece', idP=result[0]) }}">

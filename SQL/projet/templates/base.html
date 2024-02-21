@@ -5,13 +5,14 @@
 	<head>
 		<title>{% block title %}Flask{% endblock %}</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_de_la_mort_qui_tue.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_de_la_mort_qui_tue.css') }}"> <!--  lien avec le 1er css, l'autre est consacré à la page d'accueil -->
 	</head>
 	
 	<body>
-		{% block content %}
+		{% block content %} 
+		<!-- tout le contenu des autres pages html sont située entre c'est 2 blocks -->
 		{% endblock %}
-		<script src="{{ url_for('static', filename='script.js') }}"></script>
+		<script src="{{ url_for('static', filename='script.js') }}"></script> <!-- lien avec le script -->
 
 	</body>
 </html>

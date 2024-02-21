@@ -2,6 +2,7 @@
 
 {% block title %}Accueil{% endblock %}
 
+<!-- lien avec un autre css car pas les mêmes desings sur un même élément entre les différentes pages html --> 
 {% block links %} <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_accueil.css') }}"> {%endblock%}
 
 {% block content %}

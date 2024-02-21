@@ -7,11 +7,16 @@
 {% block content %}
 
 {% for result in repetition %}
+
+<!-- bouton pour retourner à l'accueil -->
+<a href="{{ url_for('accueil') }}"> 
+<img src="static\maison dollar.png" id="bouton_accueil">
+</a> 
  
 <div>
 	<h1>{{result[1]}}</h1>
 
-	<p>
+	<p> <!-- liste des différentes caractériqtiques de la pièce -->
 		<ul id="liste">
 			<li>Nom : {{result[1]}}</li>
 			<li>Nombre d'exemplaires : {{result[2]}}</li>
@@ -31,9 +36,9 @@
 </div>
 	
 <div id="placement_piece">
-	<p>
-		<img class="piece" src="{{result[14]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}" >
-		<img class="piece" src="{{result[15]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}" >
+	<p> <!-- les images de la pièce séléctionnée, à droite des caractéristique -->
+		<img id="piece_piece" src="{{result[14]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}" >
+		<img id="piece_piece" src="{{result[15]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}" >
 	</p>
 </div>
 	

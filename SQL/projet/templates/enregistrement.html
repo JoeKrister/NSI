@@ -6,21 +6,26 @@
 
 {% block content %}
 
+<!-- ALors ici, le but est de créer des champs que l'on peut remplir pour qu'ils soient ensuite incorporé dans la base de données avec "INSERT INTO" mais pas fini pour le moment ! -->
+
 <ul>
 	<form action="{{ url_for('enregistrement') }}" method="get">
 	<input placeholder="Quelle pièce voulez-vous enregistrer ?" name="nom">
 	
 	<li>
-		<label for="nb_ex">Nombre d'exemplaire:</label>
-		<input type="number"  placeholder="Son nombre d'exemplaire ?" name="nb_ex"/>
+		<label for="nb_ex">Nombre d'exemplaire ?</label>
+		<input type="number" name="nb_ex"/>
+	</li>
+	<li>
+		<label for="emet">Emetteur ?</label>
+		<input type="text" name="emet"/>
 	</li>
 
 	<input type="submit" value="Aller à la page">
 	</form>
 </ul>
 
-<!-- <input placeholder="Son emetteur ?" name="emet">
-<input placeholder="Son type ?" name="typ">
+<!-- <input placeholder="Son type ?" name="typ">
 <input placeholder="Son année de création ?" name="date">
 <input placeholder="Sa devise ?" name="dev">
 <input placeholder="Sa composition ?" name="comp">
@@ -31,11 +36,7 @@
 <input placeholder="Est-elle démonétisée ?" name="demo">
 <input placeholder="Son indice de rareté Numista ?" name="idr">
 <input placeholder="Son avers ?" name="avers">
-<input placeholder="Son revers ?" name="revers">
-
-<input type="submit" value="Aller à la page">
-</form>
-</ul> -->
+<input placeholder="Son revers ?" name="revers"> -->
 
 
 {% endblock %}
