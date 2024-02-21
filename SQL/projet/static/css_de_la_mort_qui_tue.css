@@ -1,8 +1,7 @@
 body {
     background-color: #C3D8F7;
-	font: "fantasy";
+	font-family: "Tahoma" ,"sans-serif";
 }
-
 
 h1 {
     width: 70%;
@@ -16,11 +15,51 @@ h1 {
 	border-radius: 2em;
 }
 
-/* CSS pour les recherches dans la page recherche */
+label {
+	font-size:20px;	
+}
+
+input{
+	   height: 20px;
+    font-size: 20px;
+}
+
+/* CSS pour les boutons et les pièces dans la page pieceotheque.html */
+
+#bouton_pieceotheque {
+	height: 30px;
+	border: solid;
+	background-color: #FD6651;
+	border-radius: 5px;	
+	text-align: center;
+	font-size: 15px;
+}
+
+#piece_pieceotheque:hover {
+    width: 15vw;
+}
+
+#piece_pieceotheque{
+	width : 9.5vw;
+	border-style: inset;
+	border-width: 8px;
+	border-color: #1F1006;
+	margin: 1vw 0vw 1vw 1vw;	
+}
+
+
+/* CSS pour les recherches et les pièces dans la page recherche.html */
 
 #name{
 	height: 20px;
-	width: 200px;	
+	width: 300px;	
+}
+
+#piece_recherche{
+	width : 15vw;
+	border-style: inset;
+	border-width: 8px;
+	border-color: #1F1006;
 }
 
 
@@ -35,41 +74,25 @@ h1 {
 	margin: 5vw 10vw 10vw 0vw;
 }
 
-
-/* CCS pour l'affichage des pièces */
-
-#piece_pieceotheque:hover {
-    width: 15vw;
-}
-
-#piece_pieceotheque{
-	width : 9.5vw;
-	border-style: inset;
-	border-width: 8px;
-	border-color: #1F1006;
-	margin: 1vw 0vw 1vw 1vw;
-	
-}
-
-#piece_recherche{
-	width : 15vw;
-	border-style: inset;
-	border-width: 8px;
-	border-color: #1F1006;
-}
-
 #placement_piece{
   margin: -35vw 0vw 0vw 25vw;
 }
 
+
+/* CCS pour l'affichage des pièces */
+
+
 .piece{
-	width: 30vw;
+	width: 20vw;
 	border-style: inset;
 	border-width: 8px;
 }
 
-
-
+#piece_tri{
+	width: 20vw;
+	border-style: inset;
+	border-width: 8px;
+}
 
 /* CCS pour le bouton multicolore */
 
@@ -166,14 +189,14 @@ h1 {
 	border: 6px solid white;	
 }
 
-.preloader .loader{
+.preloader.loader{
 	display: block;
 	width: 64px;
 	height: 64px;
 	position: relative;
 }
 
-.preloader .loader::before{
+.preloader.loader::before{
 	content: '';
 	width: 64px;
 	height: 64px;

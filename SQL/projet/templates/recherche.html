@@ -10,12 +10,13 @@
 <h2> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. </h2>
 
 <h2>
-<a href="{{ url_for('accueil') }}"> Accueil</a>
+<a href="{{ url_for('accueil') }}"> 
+<img src="static\WIP.png">
+</a> 
 </h2>
 	
-
 <form action="{{ url_for('resultats') }}" method="post">
-	<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom">
+<input placeholder="Quelle pièce voulez-vous voir ?" id="name" name="nom">
 
 <h3>Recherche spécifique: </h3>
 <ul>	

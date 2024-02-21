@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 connexion = sqlite3.connect("collection_21p.db")
 
-@app.route('/')
+@app.route('/accueil')
 def accueil():
     return render_template('accueil.html')
     
@@ -30,47 +30,34 @@ def resultats():
     if request.method == 'POST':       
         if 'nom' in request.form or 'nb_ex' in request.form or 'emet' in request.form or 'typ' in request.form or 'date' in request.form or 'dev' in request.form or 'comp' in request.form or 'pds' in request.form or 'diam' in request.form or 'ep' in request.form or 'forme' in request.form or 'demo' in request.form or 'idr' in request.form :
             # si une requete est faite, faire recherche dans la base de donnée
-            nb_ex = request.form['nb_ex']
-            rep = f"""SELECT * FROM csv_piece WHERE nb_ex = {nb_ex}"""
-            nom = request.form['nom']
-            if nom != "" :
-                rep += f" AND nom LIKE '%{nom}%'"
-            emet = request.form['emet']
-            if emet != "" :
-                rep += f" AND emetteur LIKE '%{emet}%'"
-            typ = request.form['typ']
-            if typ != "":
-                rep += f" AND type_p LIKE '%{typ}%'"
-            date = request.form['date']
-            if date != "0" :
-                rep += f" AND date ='{date}'"
-            dev = request.form['dev']
-            if dev != "":
-                rep += f" AND devise LIKE '%{dev}%'"
-            comp = request.form['comp']
-            if comp != "":
-                rep += f" AND composition LIKE '%{comp}%'"
-            pds = request.form['pds']
-            if pds != "0":
-                rep += f" AND poids LIKE '%{pds}%'"
-            dim = request.form['dim']
-            if dim != "0":
-                rep += f" AND dimension LIKE '%{dim}%'"
-            ep = request.form['ep']
-            if ep != "0":
-                rep += f" AND epaisseur LIKE '%{ep}%'"
-            forme = request.form['forme']
-            if forme != "":
-                rep += f" AND forme LIKE '%{forme}%'"
-            demo = request.form['demo']
-            if demo != "":
-                rep += f" AND demonetisee LIKE '%{demo}%'"
-            idr = request.form['idr']
-            if idr != "0":
-                rep += f" AND indice_de_rarete LIKE '%{idr}%'"
+            rep = f"""SELECT * FROM csv_piece WHERE nb_ex = {request.form['nb_ex']}"""
+            if request.form['nom'] != "" :
+                rep += f" AND nom LIKE '%{request.form['nom']}%'"
+            if request.form['emet'] != "" :
+                rep += f" AND emetteur LIKE '%{request.form['emet']}%'"
+            if request.form['typ'] != "":
+                rep += f" AND type_p LIKE '%{request.form['typ']}%'"
+            if request.form['date'] != "0" :
+                rep += f" AND date ='{request.form['date']}'"
+            if request.form['dev'] != "":
+                rep += f" AND devise LIKE '%{request.form['dev']}%'"
+            if request.form['comp'] != "":
+                rep += f" AND composition LIKE '%{request.form['comp']}%'"
+            if request.form['pds'] != "0":
+                rep += f" AND poids LIKE '%{request.form['pds']}%'"
+            if request.form['dim'] != "0":
+                rep += f" AND dimension LIKE '%{request.form['dim']}%'"
+            if request.form['ep'] != "0":
+                rep += f" AND epaisseur LIKE '%{request.form['ep']}%'"
+            if request.form['forme'] != "":
+                rep += f" AND forme LIKE '%{request.form['forme']}%'"
+            if request.form['demo'] != "":
+                rep += f" AND demonetisee LIKE '%{request.form['demo']}%'"
+            if request.form['idr'] != "0":
+                rep += f" AND indice_de_rarete LIKE '%{request.form['idr']}%'"
             result = curseur.execute(rep).fetchall()
             connexion.close()
-            if result == []:### si que des requetes vides, afficher page vide
+            if result == []:### si il n'y a que des requetes vides, afficher page vide
                 return render_template('vide.html')
             else:
                 return render_template('resultats.html', repetition = result)
@@ -98,7 +85,7 @@ def pieceotheque():  #fonction pour afficher toutes les pièces
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     result = curseur.execute("SELECT idP, avers, revers FROM csv_piece;").fetchall() #selectionne l'ip, l'image de l'avers et de l'envers
-    connexion.close()   
+    connexion.close()
     return render_template('pieceotheque.html', repetition = result)
 
 
@@ -225,6 +212,8 @@ def pieceotheque_D():  #fonction pour afficher toutes les pièces de manière de
 def enregistrement():  #fonction pour pouvoir enregistrer des pièces
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
+    if 'nb_ex' in request.form:
+        curseur.execute(f"""INSERT INTO csv_piece(nb_ex) VALUES({request.form['nb_ex']});""")
     connexion.close()   
     return render_template('enregistrement.html')
         
