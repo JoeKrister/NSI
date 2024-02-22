@@ -25,10 +25,18 @@ input{
 }
 
 select{
-	height: 20px;
+	height: 30px;
     font-size: 20px;
 }
 
+input[type="submit"]{
+	height: 30px;
+    font-size: 20px;
+}
+
+.liens{
+	text-decoration: none;	
+}
 
 /* CSS pour les boutons et les pièces dans la page pieceotheque.html */
 
@@ -38,11 +46,13 @@ select{
 	background-color: #FD6651;
 	border-radius: 5px;	
 	text-align: center;
-	font-size: 15px;
+	font-size: 13px;
+	transition: all 1s ease;
 }
 
 #piece_pieceotheque:hover {
-    width: 15vw;
+    width: 10vw;
+	transform: scale(1.1);
 }
 
 #piece_pieceotheque{
@@ -50,14 +60,14 @@ select{
 	border-style: inset;
 	border-width: 8px;
 	border-color: #1F1006;
-	margin: 1vw 0vw 1vw 1vw;	
+	margin: 1vw 0vw 1vw 1vw;
 }
-
 
 /* CSS pour les recherches et les pièces dans la page recherche.html */
 
-#bouton_accueil{
-	margin: -20vw 0vw 1vw -1vw;	
+#bouton_accueil{ /* present dans pièce.html */
+	margin: -50vw 0vw 5vw 1vw;
+	width: 75px;
 }
 
 #name{
@@ -115,6 +125,12 @@ select{
 	text-decoration: none;
 	font-size: 22px;
 	color: black;
+}
+
+/* CCS pour l'affichage de la page enregistrement.html */
+
+#champ_enregistrement{
+	width: 350px;
 }
 
 /* CCS pour le bouton multicolore */
@@ -246,7 +262,6 @@ select{
   padding: 5px;
   background: #fff;
   filter: blur(4px) contrast(12);
-  margin: -5vw 0vw 0vw 0vw;
 }
 
 /* animation quand ça charge */

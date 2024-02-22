@@ -6,11 +6,15 @@
 
 {% block content %}
 
+<a href="{{ url_for('accueil') }}"> 
+<img src="{{url_for('static', filename= 'maison_dollar.png')}}" id="bouton_accueil" alt="maison pour retour accueil">
+</a> 
+
 <!-- ALors ici, le but est de créer des champs que l'on peut remplir pour qu'ils soient ensuite incorporé dans la base de données avec "INSERT INTO" mais pas fini pour le moment ! -->
 
 <ul>
 	<form action="{{ url_for('enregistrement') }}" method="get">
-	<input placeholder="Quelle pièce voulez-vous enregistrer ?" name="nom">
+	<input placeholder="Quelle pièce voulez-vous enregistrer ?" name="nom" id="champ_enregistrement" >
 	
 	<li>
 		<label for="nb_ex">Nombre d'exemplaire ?</label>
@@ -20,23 +24,58 @@
 		<label for="emet">Emetteur ?</label>
 		<input type="text" name="emet"/>
 	</li>
-
+	<li>
+		<label for="typ">Type ?</label>
+		<input type="text" name="typ"/>
+	</li>
+	<li>
+		<label for="date">Année de création ?</label>
+		<input type="text" name="date"/>
+	</li>
+	<li>
+		<label for="dev">Devise ?</label>
+		<input type="text" name="dev"/>
+	</li>
+	<li>
+		<label for="comp">Composition ?</label>
+		<input type="text" name="comp"/>
+	</li>
+	<li>
+		<label for="pds">Poids ?</label>
+		<input type="text" name="pds"/>
+	</li>
+	<li>
+		<label for="dim">Dimension ?</label>
+		<input type="text" name="dim"/>
+	</li>
+	<li>
+		<label for="ep">Épaisseur ?</label>
+		<input type="text" name="ep"/>
+	</li>
+	<li>
+		<label for="forme">Forme ?</label>
+		<input type="text" name="forme"/>
+	</li>
+	<li>
+		<label for="demo">Démonétisée ?</label>
+		<input type="text" name="demo"/>
+	</li>
+	<li>
+		<label for="idr">Indice de rareté Numista ?</label>
+		<input type="text" name="idr"/>
+	</li>
+	<li>
+		<label for="avers">Url de l'avers ?</label>
+		<input type="text" name="avers"/>
+	</li>
+	<li>
+		<label for="revers">Url de revers ?</label>
+		<input type="text" name="revers"/>
+	</li>
+	
+	
 	<input type="submit" value="Aller à la page">
 	</form>
 </ul>
-
-<!-- <input placeholder="Son type ?" name="typ">
-<input placeholder="Son année de création ?" name="date">
-<input placeholder="Sa devise ?" name="dev">
-<input placeholder="Sa composition ?" name="comp">
-<input placeholder="Son poids ?" name="pds">
-<input placeholder="Sa dimension ?" name="dim">
-<input placeholder="Son épaisseur ?" name="ep">
-<input placeholder="Sa forme ?" name="forme">
-<input placeholder="Est-elle démonétisée ?" name="demo">
-<input placeholder="Son indice de rareté Numista ?" name="idr">
-<input placeholder="Son avers ?" name="avers">
-<input placeholder="Son revers ?" name="revers"> -->
-
 
 {% endblock %}

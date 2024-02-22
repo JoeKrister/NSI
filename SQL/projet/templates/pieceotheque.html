@@ -41,7 +41,7 @@
 
 <!-- répétition pour afficher toutes les pièces (leur avers et revers) -->
 {% for result in repetition %}
-<a href="{{ url_for('piece', idP=result[0]) }}">
+<a href="{{ url_for('piece', idP=result[0]) }}" class="liens">
 	<img id="piece_pieceotheque" src="{{result[1]}}" title="{{result[1]}}" alt="pièce n°{{result[0]}}">
 	<img id="piece_pieceotheque" src="{{result[2]}}" title="{{result[2]}}" alt="pièce n°{{result[0]}}">
 </a>

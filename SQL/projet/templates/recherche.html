@@ -10,7 +10,7 @@
 
 <!-- bouton pour retourner à l'accueil -->
 <a href="{{ url_for('accueil') }}"> 
-<img src="static\maison dollar.png" id="bouton_accueil">
+<img src="{{url_for('static', filename= 'maison_dollar.png')}}" id="bouton_accueil" alt="maison pour retour accueil">
 </a> 
 
 <h2> Bonjour, vous êtes sur le site catalogant mes pièces de tous types. </h2>
@@ -32,7 +32,7 @@
 	</li>
 	<li>
 		<label for="typ">Type:</label>
-		<select name="typ" >
+		<select name="typ">
 				<option value="">--- selectionnez  --- </option> <!-- option vide pour quand la personne ne sais pas-->
 				<option value="Piece courante"> Pièce courante</option>
                 <option value="Essaie"> Essaie</option>
@@ -93,7 +93,7 @@
 <!-- div proposant 5 images(avers) aléatoire venant toujours de ma base de donée -->
 <div>
 {% for result in repetition %}
-<a href="{{ url_for('piece', idP=result[0]) }}">
+<a href="{{ url_for('piece', idP=result[0]) }}" class="liens">
 	<img id="piece_recherche" src="{{ result[1] }}" alt="Avers de la pièce n°{{result[0]}}" title="{{result[1]}}">
 </a>
 {% endfor %}

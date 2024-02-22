@@ -8,7 +8,7 @@
 
 <!-- Si pas de résultat, affiche l'image venant de zonensi.fr avec lien pour retour en arrière -->
 <div id="no_found">
-<img src="static\404.png" alt="Stormtrooper en pixel avec écrit 404" >
+<img src="{{url_for('static', filename= '404.png')}}" alt="Stormtrooper en pixel avec écrit 404" >
 <p>Pas de résultats, veuillez <a href="{{ url_for('recherche') }}"> réessayer.</a></p>
 </div>
 

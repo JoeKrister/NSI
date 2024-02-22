@@ -21,7 +21,7 @@ function inversement2(){ /* Fonction qui enlève un _D a la fin d'un name pour l
 }
 
 /* Fonction pour l'écran de chargement: */
-window.addEventListener("load", function(){ 
+window.addEventListener("load", function(){
 	document.querySelector('.preloader').style.display = "none"	 /* Tant que la page n'est pas chargée laisser afficher le loader */
 });
 

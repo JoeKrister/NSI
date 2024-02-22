@@ -205,7 +205,8 @@ def enregistrement():  #fonction pour pouvoir enregistrer des pièces
     connexion = sqlite3.connect("collection_21p.db")
     curseur = connexion.cursor()
     if 'nb_ex' in request.form:
-        curseur.execute(f"""INSERT INTO csv_piece(nb_ex) VALUES({request.form['nb_ex']});""")
+        nb_ex = request.form['nb_ex']
+        curseur.execute(f"""INSERT INTO csv_piece(nb_ex) VALUES({nb_ex});""")
     connexion.close()   
     return render_template('enregistrement.html')
         
