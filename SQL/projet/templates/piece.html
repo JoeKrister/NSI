@@ -8,12 +8,11 @@
 
 {% for result in repetition %}
 
-<!-- bouton pour retourner à l'accueil -->
-
  
 <div>
 	<h1>{{result[1]}}</h1>
 
+	<!-- bouton pour retourner à l'accueil -->
 	<a href="{{ url_for('accueil') }}"> 
 	<img src="{{url_for('static', filename= 'maison_dollar.png')}}" id="bouton_accueil" alt="maison pour retour accueil">
 	</a> 

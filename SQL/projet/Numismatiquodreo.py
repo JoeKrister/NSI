@@ -4,7 +4,7 @@ from random import sample
 
 app = Flask(__name__)
 
-connexion = sqlite3.connect("collection_21p.db")
+connexion = sqlite3.connect("collection_piece.db") 
 
 @app.route('/')
 def accueil(): #affiche simplemennt la page d'accueil
@@ -13,7 +13,7 @@ def accueil(): #affiche simplemennt la page d'accueil
 
 @app.route('/recherche')
 def recherche(): #fonction pour afficher la 1ere page/ page principale
-    connexion = sqlite3.connect("collection_21p.db")
+    connexion = sqlite3.connect("collection_piece.db")
     curseur = connexion.cursor()
     rep = """SELECT  idP, avers, revers FROM csv_piece;""" #la variable rep est initialisée avec les données de la db (l'ip de la pièce, l'image avant et arrière) 
     all_results = curseur.execute(rep).fetchall() #recupère toutes les données 
@@ -25,7 +25,7 @@ def recherche(): #fonction pour afficher la 1ere page/ page principale
 
 @app.route('/resultats',methods = ['POST'])
 def resultats():
-    connexion = sqlite3.connect("collection_21p.db")
+    connexion = sqlite3.connect("collection_piece.db")
     curseur = connexion.cursor()
     if request.method == 'POST':       
         if 'nom' in request.form or 'nb_ex' in request.form or 'emet' in request.form or 'typ' in request.form or 'date' in request.form or 'dev' in request.form or 'comp' in request.form or 'pds' in request.form or 'diam' in request.form or 'ep' in request.form or 'forme' in request.form or 'demo' in request.form or 'idr' in request.form :
@@ -69,7 +69,7 @@ def resultats():
 
 @app.route('/piece/<int:idP>')
 def piece(idP):  #fonction pour l'affichage unique de la pièce
-    connexion = sqlite3.connect("collection_21p.db")
+    connexion = sqlite3.connect("collection_piece.db")
     curseur = connexion.cursor()
     result = curseur.execute("SELECT * FROM csv_piece WHERE idP=?;", (idP,)).fetchall() #selectionne la ligne selon l'ip rentrée
     connexion.close()
@@ -82,7 +82,7 @@ def piece(idP):  #fonction pour l'affichage unique de la pièce
 
 @app.route('/pieceotheque',methods = ['GET'])
 def pieceotheque():  #fonction pour afficher toutes les pièces
-    connexion = sqlite3.connect("collection_21p.db")
+    connexion = sqlite3.connect("collection_piece.db")
     curseur = connexion.cursor()
     result = curseur.execute("SELECT idP, avers, revers FROM csv_piece;").fetchall() #selectionne l'ip, l'image de l'avers et de l'envers
     connexion.close()
@@ -91,7 +91,7 @@ def pieceotheque():  #fonction pour afficher toutes les pièces
 
 @app.route('/tri' ,methods = ['POST'])
 def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
-    connexion = sqlite3.connect("collection_21p.db")
+    connexion = sqlite3.connect("collection_piece.db")
     curseur = connexion.cursor()
     if request.method == 'POST':
         ### Ascendant
@@ -199,10 +199,10 @@ def tri():  #fonction pour afficher toutes les pièces selon leurs nombres
 
 
 
-# /!\ en test, pas fini !!
+# /!\ en test, pas fini donc juste le 1er champ testé sans succès!!
 @app.route('/enregistrement',methods = ['GET'])
 def enregistrement():  #fonction pour pouvoir enregistrer des pièces
-    connexion = sqlite3.connect("collection_21p.db")
+    connexion = sqlite3.connect("collection_piece.db")
     curseur = connexion.cursor()
     if 'nb_ex' in request.form:
         nb_ex = request.form['nb_ex']

@@ -65,7 +65,7 @@ input[type="submit"]{
 
 /* CSS pour les recherches et les pièces dans la page recherche.html */
 
-#bouton_accueil{ /* present dans pièce.html */
+#bouton_accueil{ /* present dans pièce.html et enregistrement.html */
 	margin: -50vw 0vw 5vw 1vw;
 	width: 75px;
 }
