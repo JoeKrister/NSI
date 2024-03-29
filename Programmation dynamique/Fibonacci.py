@@ -19,3 +19,16 @@ def fiboAsc(n : int) -> int :
     for i in range(2,n+1) :
         F[i] = F[i-1] + F[i-2]
     return F[n]
+
+def fiboDesc(n : int) -> int :
+
+    memo = [0, 1]+[None]*(n-1)
+
+    def compute(n, memo) :
+        if memo[n] is  None :
+            memo[n] = compute(n-1, memo) + compute(n-2, memo)
+        return memo[n]
+
+    return compute(n, memo)
+
+fiboDesc(5)
